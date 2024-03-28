@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -48,6 +49,7 @@ public class CommandBox extends UiPart<Region> {
             int index = extractIndex(commandText);
 
             CommandResult result = commandExecutor.execute(commandText);
+
             if (commandText.contains("!")) {
                 int exclamationIndex = commandText.indexOf('!');
                 char letterAfterExclamation = commandText.charAt(exclamationIndex + 1);
@@ -67,7 +69,7 @@ public class CommandBox extends UiPart<Region> {
                     prefix = "address";
                     break;
                 case 't':
-                    prefix = "tag";
+                    prefix = "timeslot";
                     break;
                 case 'g':
                     prefix = "grade";

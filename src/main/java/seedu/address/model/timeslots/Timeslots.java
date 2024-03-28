@@ -18,7 +18,6 @@ public class Timeslots {
     public static final String VALIDATION_REGEX = "^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) "
         + "(1[012]|[1-9])(:[0-5][0-9])?(am|pm)-(1[012]|[1-9])(:[0-5][0-9])?(am|pm)$";
 
-
     public final String timeslot;
 
     /**

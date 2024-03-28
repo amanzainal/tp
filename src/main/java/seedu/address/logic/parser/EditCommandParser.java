@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_EDIT;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -40,10 +41,21 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
-                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TIMESLOT_EDIT, PREFIX_GRADE_EDIT,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT, PREFIX_EMAIL_EDIT,
+                PREFIX_ADDRESS_EDIT, PREFIX_TIMESLOT_EDIT, PREFIX_GRADE_EDIT,
                 OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
                 OPTION_PRINT_ADDRESS, OPTION_PRINT_TIMESLOT, OPTION_PRINT_GRADE);
+
+        long count = Arrays.asList(OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
+                        OPTION_PRINT_ADDRESS, OPTION_PRINT_TIMESLOT, OPTION_PRINT_GRADE)
+                .stream()
+                .filter(option -> argMultimap.getValue(option).isPresent())
+                .count();
+
+        if (count > 1) {
+            throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
+        }
 
         // Check if any option to print is requested
         if (argMultimap.getValue(OPTION_PRINT_NAME).isPresent()) {
@@ -64,8 +76,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         } else if (argMultimap.getValue(OPTION_PRINT_ADDRESS).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
-                    false, false,
-                    false, true, false, false);
+                    false, false, false,
+                    true, false, false);
         } else if (argMultimap.getValue(OPTION_PRINT_TIMESLOT).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
@@ -116,11 +128,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (!editStudentDescriptor.isSingleFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
-        }
 
-        return new EditCommand(index, editStudentDescriptor, false, false, false, false, false, false);
+        return new EditCommand(index, editStudentDescriptor,
+                false, false, false,
+                false, false, false);
     }
 
     /**
@@ -151,7 +162,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return Optional.of(timeslotSet);
     }
-
 
     /**
      * Parses {@code Collection<String> grades} into a {@code Set<Grade>} if {@code grades} is non-empty.
