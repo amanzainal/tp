@@ -50,9 +50,9 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + OPTION_PRINT_EMAIL;
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE =
             "Please ensure that only one field is edited at most.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
@@ -262,34 +262,6 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, timeslots, grades);
-        }
-
-        /**
-         * Returns true if only one field is edited and false if more than one field is edited.
-         */
-        public boolean isSingleFieldEdited() {
-            int editedFieldCount = 0;
-
-            if (name != null) {
-                editedFieldCount++;
-            }
-            if (phone != null) {
-                editedFieldCount++;
-            }
-            if (email != null) {
-                editedFieldCount++;
-            }
-            if (address != null) {
-                editedFieldCount++;
-            }
-            if (timeslots != null) {
-                editedFieldCount++;
-            }
-            if (grades != null) {
-                editedFieldCount++;
-            }
-
-            return editedFieldCount == 1;
         }
 
         public void setName(Name name) {

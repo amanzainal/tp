@@ -48,6 +48,7 @@ public class CommandBox extends UiPart<Region> {
             int index = extractIndex(commandText);
 
             CommandResult result = commandExecutor.execute(commandText);
+
             if (commandText.contains("!")) {
                 int exclamationIndex = commandText.indexOf('!');
                 char letterAfterExclamation = commandText.charAt(exclamationIndex + 1);
@@ -67,7 +68,7 @@ public class CommandBox extends UiPart<Region> {
                     prefix = "address";
                     break;
                 case 't':
-                    prefix = "tag";
+                    prefix = "timeslot";
                     break;
                 case 'g':
                     prefix = "grade";
