@@ -50,7 +50,8 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + OPTION_PRINT_EMAIL;
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE = "Please ensure that only one field is edited at most.";
+    public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE =
+            "Please ensure that only one field is edited at most.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
