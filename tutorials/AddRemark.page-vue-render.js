@@ -137,7 +137,7 @@ with(this){return _c('p',[_v("Now that we have all the information that we need,
 with(this){return _c('h3',{attrs:{"id":"add-a-new-remark-class"}},[_v("Add a new "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#add-a-new-remark-class","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_v("Create a new "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" in "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("seedu.address.model.person")]),_v(". Since a "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" is a field that is similar to "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Address")]),_v(", we can reuse a significant bit of code.")])}
+with(this){return _c('p',[_v("Create a new "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" in "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("seedu.address.model.student")]),_v(". Since a "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" is a field that is similar to "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Address")]),_v(", we can reuse a significant bit of code.")])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_v("A copy-paste and search-replace later, you should have something like "),_c('a',{attrs:{"href":"https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece"}},[_v("this")]),_v(". Note how "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Remark")]),_v(" has no constrains and thus does not require input\nvalidation.")])}
@@ -155,7 +155,7 @@ with(this){return _c('h2',{attrs:{"id":"add-a-placeholder-element-for-remark-to-
 with(this){return _c('p',[_v("Without getting too deep into "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("fxml")]),_v(", let’s go on a 5 minute adventure to get some placeholder text to show up for each person.")])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_v("Simply add the following to "),_c('a',{attrs:{"href":"https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688"}},[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("seedu.address.ui.PersonCard")])]),_v(".")])}
+with(this){return _c('p',[_v("Simply add the following to "),_c('a',{attrs:{"href":"https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688"}},[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("seedu.address.ui.StudentCard")])]),_v(".")])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("PersonCard.java")]),_v(":")])])}
@@ -290,6 +290,6 @@ with(this){return _c('h2',{attrs:{"id":"conclusion"}},[_v("Conclusion"),_c('a',{
 with(this){return _c('p',[_v("This concludes the tutorial for adding a new "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Command")]),_v(" to AddressBook.")])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.3.0")]),_v(", generated on Thu, 21 Mar 2024, 19:42:22 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.3.0")]),_v(", generated on Thu, 28 Mar 2024, 21:33:28 GMT+8]")])])])}
 }];
   
