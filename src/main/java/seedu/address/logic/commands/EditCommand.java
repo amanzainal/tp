@@ -186,7 +186,14 @@ public class EditCommand extends Command {
         }
 
         Student student = lastShownList.get(index.getZeroBased());
-        return student.getGrades().toString();
+        Set<Grade> grades = student.getGrades();
+
+        // Remove curly braces from timeslots and join them into a comma-separated string
+        String gradeString = grades.stream()
+                .map(grade -> grade.toString().replaceAll("[\\[\\]]", "").trim())
+                .collect(Collectors.joining(", "));
+
+        return gradeString;
     }
 
     /**

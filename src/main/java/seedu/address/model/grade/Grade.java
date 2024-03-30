@@ -53,12 +53,6 @@ public class Grade {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-    @Override
-    public String toString() {
-        return testName + ": " + grade;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -79,4 +73,7 @@ public class Grade {
         return Objects.hash(testName, grade);
     }
 
+    public String toString() {
+        return testName + ": " + grade;
+    }
 }

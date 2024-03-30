@@ -174,7 +174,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (grades.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> gradeSet = grades.size() == 1 && grades.contains("") ? Collections.emptySet() : grades;
-        return Optional.of(ParserUtil.parseGrades(gradeSet));
+
+        Set<Grade> gradeSet = new HashSet<>();
+        for (String gradeString : grades) {
+            String trimmedGradeString = gradeString.trim();
+            // Remove leading and trailing curly braces if present
+            if (trimmedGradeString.startsWith("[[") && trimmedGradeString.endsWith("]]")) {
+                trimmedGradeString = trimmedGradeString.substring(2, trimmedGradeString.length() - 2);
+            }
+            // Split by commas to handle multiple grades
+            String[] gradeArray = trimmedGradeString.split(",");
+            for (String grade : gradeArray) {
+                gradeSet.add(new Grade(grade.trim()));
+            }
+        }
+
+        return Optional.of(gradeSet);
     }
 }
