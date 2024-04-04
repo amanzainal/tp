@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute("edit 1 !p")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit 1 !p")
+LogicManager -> AddressBookParser : parseCommand("edit 1 phone:")
 activate AddressBookParser
 
 create EditCommandParser
@@ -49,7 +49,7 @@ deactivate AddressBookParser
 LogicManager -> EditCommand : execute(m)
 activate EditCommand
 
-EditCommand -> Model : EditPerson(1)
+EditCommand -> Model : EditStudent(1)
 activate Model
 
 Model --> EditCommand
