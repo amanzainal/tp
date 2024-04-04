@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 import java.util.Optional;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TestNameEqualsKeywordPredicate;
 
 
 /**
@@ -24,7 +26,7 @@ public class SortCommand extends Command {
             + "/r means reverse so it will sort in decreasing order, highest grade first.\n"
             + "Example: " + COMMAND_WORD + " ca1 /r";
 
-    private final String testName;
+    private final TestNameEqualsKeywordPredicate predicate;
     private final boolean isReverse;
 
     /**
@@ -41,8 +43,8 @@ public class SortCommand extends Command {
      * Example:
      * - sort Math /r: Sorts students based on their Math test grades in decreasing order.
      */
-    public SortCommand(String testName, boolean isReverse) {
-        this.testName = testName;
+    public SortCommand(TestNameEqualsKeywordPredicate predicate, boolean isReverse) {
+        this.predicate = predicate;
         this.isReverse = isReverse;
     }
 
@@ -50,8 +52,8 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Comparator<Student> gradeComparator = (student1, student2) -> {
-            String grade1 = Optional.ofNullable(student1.getGradeForTest(testName)).orElse("0");
-            String grade2 = Optional.ofNullable(student2.getGradeForTest(testName)).orElse("0");
+            String grade1 = Optional.ofNullable(student1.getGradeForTest(predicate.keyword)).orElse("0");
+            String grade2 = Optional.ofNullable(student2.getGradeForTest(predicate.keyword)).orElse("0");
             return grade1.compareTo(grade2);
         };
 
@@ -59,9 +61,31 @@ public class SortCommand extends Command {
             gradeComparator = gradeComparator.reversed();
         }
 
-        model.sortFilteredStudentList(gradeComparator);
+        model.sortFilteredStudentList(gradeComparator, predicate);
         return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW,
-            model.getFilteredStudentList().size()));
+                model.getFilteredStudentList().size()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand otherSortCommand = (SortCommand) other;
+        return predicate.equals(otherSortCommand.predicate) && isReverse == otherSortCommand.isReverse;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("predicate", predicate)
+                .add("isReverse", isReverse)
+                .toString();
+    }
 }
