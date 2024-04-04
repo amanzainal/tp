@@ -160,7 +160,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortFilteredStudentList(Comparator<Student> comparator) {
+        public void sortFilteredStudentList(Comparator<Student> comparator, Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -92,5 +92,5 @@ public interface Model {
      *
      * @param comparator The comparator to determine the order of the list.
      */
-    void sortFilteredStudentList(Comparator<Student> comparator);
+    void sortFilteredStudentList(Comparator<Student> comparator, Predicate<Student> predicate);
 }
