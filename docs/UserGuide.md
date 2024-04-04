@@ -98,21 +98,20 @@ Shows a list of all students in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the TutorTrack.
+Edits an existing student in the TutorTrack.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [ca1/CA1_GRADE] [ca2/CA2_GRADE] [mt/MT_GRADE] [eoy/EOY_GRADE]`
+Format: `edit INDEX !n | !p | !e | !a | !t | !g`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Only one of the variable fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* Adding and modifying multiple tags and grades are allowed, i.e. they will not be overwritten.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clear existing tag.
+*  `edit 1 !p` will display `edit 1 phone: {previous phone number}`, prompting user to make changes to the phone number of the 1st student.
+*  `edit 2 !g` will display `edit 2 grade: {previous grades}`, prompting user to add (single or multiple) additional grades or modify current grades of the 2nd student.
 
 ### Locating students by name: `find`
 
@@ -150,7 +149,7 @@ Examples:
 
 ### Deleting a student : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
 Format: `delete INDEX`
 
@@ -207,13 +206,13 @@ Furthermore, certain edits can cause TutorTrack to behave in unexpected ways (e.
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOT]…​ [g/GRADE]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Filter**   | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter Saturday Sunday`
-**List**   | `list`
-**Help**   | `help`
+| Action     | Format, Examples                                                                                                                                                                               |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOT]…​ [g/GRADE]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50` |
+| **Clear**  | `clear`                                                                                                                                                                                        |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
+| **Edit**   | `edit INDEX !n or !p or !e or !a or !t or !g` <br> e.g.,`edit 2 !n`                                                                                                                            |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
+| **Filter** | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter Saturday Sunday`                                                                                                                            |
+| **List**   | `list`                                                                                                                                                                                         |
+| **Help**   | `help`                                                                                                                                                                                         |
