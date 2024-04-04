@@ -6,13 +6,16 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniqueStudentList
 AddressBook *-right-> "1" UniqueTimeSlotList
+AddressBook *-left-> "1" UniqueGradeList
 UniqueTimeSlotList -[hidden]down- UniqueStudentList
-UniqueTimeSlotList -[hidden]down- UniqueStudentList
+UniqueGradeList -[hidden]down- UniqueStudentList
 
 UniqueTimeSlotList -right-> "*" Timeslot
+UniqueGradeList -right-> "*" Grade
 UniqueStudentList -right-> Student
 
 Student -up-> "*" Timeslot
+Student -up-> "*" Grade
 
 Student *--> Name
 Student *--> Phone
