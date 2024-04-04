@@ -160,7 +160,7 @@ This section describes some noteworthy details on how certain features are imple
 ###  Grade parameter
 
 ####  Implementation
-Grades  
+Grades
 * are an attribute of every student
 * can vary from student to student, both in quantity of grades stored and test scores
 * of the form: [test name: grade] where
@@ -181,7 +181,7 @@ with the first test name being `ca1` and the score attained `100` and the second
 ####  Implementation
 Timeslots
 * are an attribute of every student
-* of the form: [DayOfWeek StartTime-EndTime] where 
+* of the form: [DayOfWeek StartTime-EndTime] where
     + The DayOfWeek is any day from Monday to Sunday.
     + StartTime and EndTime include hours and optional minutes in 12-hour format
     + Minutes, if included, should be separated from hours by a colon
@@ -200,10 +200,10 @@ Given below are example usages scenario of how adding timeslots behaves.
 
 ####  Implementation
 
-The filter mechanism allows the user to filter through students based on their timeslots. 
+The filter mechanism allows the user to filter through students based on their timeslots.
 It is facilitated by `TimeslotsContainsKeywordsPredicate`, which extends `Predicate<Student>` with a list of keywords stored internally as `keywords`.
 Additionally, it implements the following operations:
-* `TimeslotsContainsKeywordsPredicate#test()` — Returns a boolean value for every student in the addressBook, 
+* `TimeslotsContainsKeywordsPredicate#test()` — Returns a boolean value for every student in the addressBook,
 returning `true` if any of the student's timeslots matches the keywords, and `false` otherwise.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
@@ -219,8 +219,8 @@ The following sequence diagram shows how an undo operation goes through the `Log
 ### Improved Edit Functionality
 
 #### Implementation
-The proposed enhancement aims to improve the current edit functionality within our system. 
-Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user. 
+The proposed enhancement aims to improve the current edit functionality within our system.
+Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user.
 This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing. 
 Therefore, the proposed implementation focuses on changing the edit behavior to only modify one parameter at a time while retaining the previous values for other parameters.
 
@@ -347,7 +347,7 @@ _{more aspects and alternatives to be added}_
 
 **Target user profile**:
 
-* a tutor who has many students 
+* a tutor who has many students
 * currently busy studying
 * wants a solution for smoother academic interactions with his students
 * prefer desktop apps over other types
@@ -355,7 +355,7 @@ _{more aspects and alternatives to be added}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a 
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a
 streamlined approach to communicate with and track information about their students.
 
 
@@ -376,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | insightful tutor                             | attach grades to students              | I can keep track of how my student is doing                       |
 | `* * `   | forgetful tutor                              | filter through timeslots               | I can search for timeslots in which I have lessons                |
 | `* * `   | organised tutor                              | sort through student's grades          | I can get an overview of any particular struggling student        |
- 
+
 
 *{More to be added}*
 
@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 2a. The list is empty. 
+* 2a. The list is empty.
   * 2a1. System shows an error message.
 
     Use case ends.
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Required fields are left empty.
     * 2a1. System shows an error message.
-      
+
       Use case ends.
 * 2b. The given phone number is invalid.
     * 2b1. System shows an error message.
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
-      
+
       Use case ends.
 
 **Use case:** UC05 - Find a student.<br>

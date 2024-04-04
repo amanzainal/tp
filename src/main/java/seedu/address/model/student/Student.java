@@ -74,6 +74,22 @@ public class Student {
     }
 
     /**
+     * Returns the grade for a specific test.
+     *
+     * @param testName The name of the test to find the grade for.
+     * @return The grade for the specified test as a String, or null if the student does not have a grade for that test.
+     */
+    public String getGradeForTest(String testName) {
+        for (Grade grade : grades) {
+            if (grade.testName.equals(testName)) {
+                return grade.grade;
+            }
+        }
+        return null;
+    }
+
+
+    /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
