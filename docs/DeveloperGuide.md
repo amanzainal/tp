@@ -212,9 +212,6 @@ Here's a simplified class diagram of the sort feature:
 
 <puml src="diagrams/SortFeatureClassDiagram.puml" alt="Class Diagram for Sort Feature" />
 
-The sequence diagram below shows how the sort feature works within the `Logic` component:
-
-<puml src="diagrams/SortFeatureSequenceDiagram.puml" alt="Sequence Diagram for Sort Feature" />
 
 #### Design Considerations
 

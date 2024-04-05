@@ -1,0 +1,31 @@
+@startuml SortFeatureClassDiagram
+!theme plain
+
+class Command {
+    {abstract} execute(Model model): CommandResult
+}
+
+class SortCommand {
+    -testName: String
+    -isReverse: boolean
+    execute(Model model): CommandResult
+}
+
+class Model {
+    {abstract} sortFilteredStudentList(Comparator<Student>)
+}
+
+class Student {
+    -grades: String
+}
+
+interface Comparator <<interface>> {
+    compare(Student s1, Student s2): int
+}
+
+Command <|-- SortCommand
+Model <-- SortCommand : uses
+Comparator ..> SortCommand : uses to sort
+Student -- Comparator : compared by
+
+@enduml
