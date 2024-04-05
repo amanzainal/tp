@@ -82,7 +82,7 @@ public class FilterCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TimeslotContainsKeywordsPredicate}.
      */
     private TimeslotsContainsKeywordsPredicate preparePredicate(String userInput) {
         return new TimeslotsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));

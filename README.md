@@ -6,18 +6,14 @@
 # TutorTrack
 TutorTrack provides fast access to tutors' students contact details, optimized for users who prefer a CLI-driven interface. This serves as a powerful contact management tool designed for academic and professional use by streamlining tasks and enhancing organization.
 
-## Must-have Features
-* Tutors can add and edit their student's contact, storing important information like name, phone number, email, address, tag and grades
-* Tutors can search for specific students
-* Tutors can delete old student's contacts
-* Tutors can view all their current students
-
-## Good-to-have Features
-* Having a good user-interface
-* Having an automated routine tasks (e.g. sending reminders)
-* Having an option to confirm or deny all commands
-* Having customizability options on the GUI to reflect personal style
-* Having a grammar or spell-check features within the platform
+## Features
+You can 
+* add and edit student's contact, storing important information like name, phone number, email, address, timeslot and grades
+* search for specific students
+* delete old student's contacts
+* view all students' contacts
+* filter through student's by timeslot
+* sort by grade
 
 ## Documentation
 For the detailed documentation of this project, see the **[TutorTrack Product Website](https://ay2324s2-cs2103-f08-4.github.io/tp/)**.

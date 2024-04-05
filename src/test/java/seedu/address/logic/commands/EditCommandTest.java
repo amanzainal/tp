@@ -39,7 +39,9 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor,
+                false, false, false,
+                false, false, false);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
                 Messages.format(editedStudent));
@@ -61,7 +63,9 @@ public class EditCommandTest {
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTimeslots(VALID_TIMESLOT_SATURDAY_3PM_5PM).build();
-        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor,
+                false, false, false,
+                false, false, false);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
                 Messages.format(editedStudent));
@@ -74,7 +78,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, new EditStudentDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, new EditStudentDescriptor(),
+                false, false, false,
+                false, false, false);
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
@@ -92,7 +98,9 @@ public class EditCommandTest {
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build(),
+                false, false, false,
+                false, false, false);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS,
                 Messages.format(editedStudent));
@@ -107,7 +115,9 @@ public class EditCommandTest {
     public void execute_duplicateStudentUnfilteredList_failure() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor,
+                false, false, false,
+                false, false, false);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
     }
@@ -119,7 +129,9 @@ public class EditCommandTest {
         // edit student in filtered list into a duplicate in address book
         Student studentInList = model.getAddressBook().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
-                new EditStudentDescriptorBuilder(studentInList).build());
+                new EditStudentDescriptorBuilder(studentInList).build(),
+                false, false, false,
+                false, false, false);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
     }
@@ -128,7 +140,9 @@ public class EditCommandTest {
     public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor,
+                false, false, false,
+                false, false, false);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -145,18 +159,24 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build(),
+                false, false, false,
+                false, false, false);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_STUDENT, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_STUDENT, DESC_AMY,
+                false, false, false,
+                false, false, false);
 
         // same values -> returns true
         EditStudentDescriptor copyDescriptor = new EditStudentDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_STUDENT, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_STUDENT, copyDescriptor,
+                false, false, false,
+                false, false, false);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -169,20 +189,25 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_STUDENT, DESC_AMY,
+                false, false, false,
+                false, false, false)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_STUDENT, DESC_BOB,
+                false, false, false,
+                false, false, false)));
     }
 
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
-        EditCommand editCommand = new EditCommand(index, new EditStudentDescriptor());
+        EditCommand editCommand = new EditCommand(index, new EditStudentDescriptor(),
+                false, false, false,
+                false, false, false);
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editStudentDescriptor="
                 + editStudentDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
-
 }

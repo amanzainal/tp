@@ -1,7 +1,6 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: page
+title: Developer Guide
 ---
 
 # TutorTrack Developer Guide
@@ -27,7 +26,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<puml src="diagrams/ArchitectureDiagram.puml" width="280" />
+<puml src="diagrams/ArchitectureDiagram.puml" width="280">
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -35,7 +34,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -52,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574"></puml>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -67,7 +66,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
@@ -84,7 +83,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -103,7 +102,6 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a Student).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -116,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -130,7 +128,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Timeslot` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Timeslot` object per unique timeslot, instead of each `Student` needing their own `Timeslot` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Timeslot` list and `Grade` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Timeslot` object per unique timeslot and one `Grade` object per unique grade, instead of each `Student` needing their own `Timeslot` and `Grade` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -139,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -161,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 ###  Grade parameter
 
 ####  Implementation
-Grades  
+Grades
 * are an attribute of every student
 * can vary from student to student, both in quantity of grades stored and test scores
 * of the form: [test name: grade] where
@@ -182,7 +180,7 @@ with the first test name being `ca1` and the score attained `100` and the second
 ####  Implementation
 Timeslots
 * are an attribute of every student
-* of the form: [DayOfWeek StartTime-EndTime] where 
+* of the form: [DayOfWeek StartTime-EndTime] where
     + The DayOfWeek is any day from Monday to Sunday.
     + StartTime and EndTime include hours and optional minutes in 12-hour format
     + Minutes, if included, should be separated from hours by a colon
@@ -201,13 +199,40 @@ Given below are example usages scenario of how adding timeslots behaves.
 
 ####  Implementation
 
-The filter mechanism allows the user to filter through students based on their timeslots. 
+The filter mechanism allows the user to filter through students based on their timeslots.
 It is facilitated by `TimeslotsContainsKeywordsPredicate`, which extends `Predicate<Student>` with a list of keywords stored internally as `keywords`.
 Additionally, it implements the following operations:
-* `TimeslotsContainsKeywordsPredicate#test()` — Returns a boolean value for every student in the addressBook, 
+* `TimeslotsContainsKeywordsPredicate#test()` — Returns a boolean value for every student in the addressBook,
 returning `true` if any of the student's timeslots matches the keywords, and `false` otherwise.
 
+The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
+<puml src="diagrams/FilterSequenceDiagram-Logic.puml" alt="FilterSequenceDiagram-Logic" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+### Improved Edit Functionality
+
+#### Implementation
+The proposed enhancement aims to improve the current edit functionality within our system.
+Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user.
+This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing. 
+Therefore, the proposed implementation focuses on changing the edit behavior to only modify one parameter at a time while retaining the previous values for other parameters.
+
+How the feature is implemented (or is going to be implemented).
+* Single-Parameter Editing: The enhanced edit command will allow users to edit one parameter at a time. For example, instead of wiping out all grade values and replacing them with a new set of grades, the user can now edit individual grades or classes separately.
+* Retain Previous Values: When a user initiates an edit operation, the system will display the current value of the parameter being edited. This value will be shown in the text area, allowing users to modify it based on the existing data. This approach aligns with the assumption that edits typically involve minor adjustments or updates rather than complete replacements.
+
+Why it is implemented this way?
+The enhancement aims to improve user experience by enabling incremental edits and preserving previous values, facilitating more accurate and efficient changes. This approach also enhances data integrity and accuracy, aligning with best practices in user interface design to minimize errors and data loss during edits.
+
+Alternatives considered.
+* Alternative 1 was batch editing, allowing users to modify multiple parameters simultaneously. However, this could lead to confusion and data conflicts, especially with complex data. It might also need extra validation for data consistency.
+* Alternative 2 involved a confirmation prompt before editing, informing users of potential data replacement. While transparent, it doesn't solve the issue of preserving data during edits.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -302,10 +327,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -325,7 +346,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* a tutor who has many students 
+* a tutor who has many students
 * currently busy studying
 * wants a solution for smoother academic interactions with his students
 * prefer desktop apps over other types
@@ -333,7 +354,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a 
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a
 streamlined approach to communicate with and track information about their students.
 
 
@@ -341,23 +362,20 @@ streamlined approach to communicate with and track information about their stude
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                    |
-|----------|--------------------------------------------|----------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | user                                       | add a student's contact                      |                                                                    |
-| `* * *`  | user                                       | delete a student's contact                   | remove entries of students that I no longer need to keep track of  |
-| `* * *`  | user                                       | edit a student's contact                     | correct mistakes i made when adding a contact                      |
-| `* * *`  | user                                       | search for a student's contact               | I can find a student's contact                                     |
-| `* * *`  | user with many Students in the address book | view all students' contact                   |                                                                    |
-| `* * `   | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App             |
-| `* * `   | new user                                   | try out the programme with sample data       | I can explore the functionalities of the product                   |
-| `* * `   | advanced user                              | create shortcuts for commands                | I can more efficiently type commands                               |
-| `* `     | administrative tutor                       | broadcast information to groups of students  | I can quickly relay information to my tutees                       |
-| `* * `   | forgetful tutor                            | attach tags to tutees                        | I can quickly access important information related to them         |
-| `* * `   | proactive tutor                            | get a summary of my tutees current abilities | I can better prepare for classes                                   |
-| `* * `   | forgetful tutor                            | set and get reminders on lessons             | I will not miss any lessons                                        |
-| `* * `   | tutor                                      | group students by tags                       | I can easily communicate with different teams indicated by tags    |
-| `* * `   | clumsy typer                               | do fuzzy search                              | I can quickly find the record I need even if there are some typos  |
- 
+| Priority | As a …​                                      | I want to …​                           | So that I can…​                                                   |
+|----------|----------------------------------------------|----------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | tutor                                        | add a student's contact                |                                                                   |
+| `* * *`  | tutor                                        | delete a student's contact             | remove entries of students that I no longer need to keep track of |
+| `* * *`  | tutor                                        | edit a student's contact               | correct mistakes I made when adding a contact                     |
+| `* * *`  | tutor                                        | search for a student's contact         | I can find a student's contact                                    |
+| `* * *`  | tutor with many students in the address book | view all students' contact             |                                                                   |
+| `* * `   | new tutor                                    | see usage instructions                 | refer to instructions when I forget how to use the App            |
+| `* * `   | new tutor                                    | try out the programme with sample data | I can explore the functionalities of the product                  |
+| `* * `   | administrative tutor                         | attach timeslots to students           | I can quickly see which class the student belongs to              |
+| `* * `   | insightful tutor                             | attach grades to students              | I can keep track of how my student is doing                       |
+| `* * `   | forgetful tutor                              | filter through timeslots               | I can search for timeslots in which I have lessons                |
+| `* * `   | organised tutor                              | sort through student's grades          | I can get an overview of any particular struggling student        |
+
 
 *{More to be added}*
 
@@ -375,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 2a. The list is empty. 
+* 2a. The list is empty.
   * 2a1. System shows an error message.
 
     Use case ends.
@@ -392,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Required fields are left empty.
     * 2a1. System shows an error message.
-      
+
       Use case ends.
 * 2b. The given phone number is invalid.
     * 2b1. System shows an error message.
@@ -406,12 +424,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. System shows an error message.
 
       Use case ends.
+* 2e. The given timeslots are invalid.
+    * 2d1. System shows an error message.
+
+      Use case ends.
 * 2e. The student exists in the database already.
     * 2e1. System shows an error message.
 
       Use case ends.
 
-**Use case:** UC03 - Update a student.<br>
+**Use case:** UC03 - Edit a student.<br>
 
 **MSS:**
 1. User requests to list students.
@@ -450,9 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list students.
 2. System displays the list of students.
 3. User requests to delete a specific student information.
-4. System request for confirmation.
-5. User give confirmation.
-6. System delete the student information from the database.
+4System delete the student information from the database.
 
    Use case ends.
 
@@ -464,22 +484,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
-    * 3a2. System requests for the correct index.
-    * 3a3. User enters new index.
 
-      Steps 3a2-3a3 are repeated until the data entered are correct.
-
-      Use case resumes from step 4.
-* 4a. User cancels deletion.
-    * 4a1. System displays confirmation message.
-* 4b. User enters invalid syntax for confirmation.
-    * 4a1. System displays error message.
-    * 4a2. System requests for the correct data.
-    * 4a3. User enters new data.
-
-      Steps 4a2-4a3 are repeated until the data entered is correct.
-
-      Use case continues from step 5.
+      Use case ends.
 
 **Use case:** UC05 - Find a student.<br>
 
@@ -515,22 +521,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 Students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should not take a lot of memory while in operation.
-5.  Should be able to view and load 100 contacts without a noticeable lag.
-6.  Should not lose the result of the latest execution of an instruction in the case of connectivity loss.
-7.  Should allow use only by authorized users.
+4.  Should not take more than 30 MB of storage space.
+5.  The application should respond to user input within 1 second.
+6.  Should work locally, without requiring access to any remote servers
+7.  The application must comply with data protection laws PDPA since it stores personal information.
+8.  The system should ensure that there is no loss or corruption of data throughout its operations.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tutor**: A user who wants to keep track of their students' contacts
-* **Tutee**: A student that is assigned to a tutor
-* **Contact List**: A collection of tutees' Studental and contact information accessible by the tutor.
-* **Assessment Record**: A log of scores from quizzes, tests, assignments, and other forms of assessment for a tutee.
-* **Grade Entry**: The action or feature that allows a tutor to input a student's grade into the system.
-* **Grade Reporting**: The functionality to generate reports or summaries of tutees' grades for review by tutees.
-* **Grading Scale**: The standard by which tutees' performance is measured, such as A-F, 1-10, or percentage.
+* **Student/Tutee**: A person that is taught by the tutor
+* **Contact List**: A collection of student's personal and contact information accessible by the tutor.
+* **Grade**: A pair of test name and scores from quizzes, tests, assignments, and other forms of assessment for a student.
+* **Timeslot**: A day and time, recurring weekly, that indicates class times of a student.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,7 +565,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting a Student
 
@@ -577,12 +581,12 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: delete the Addressbook.json file located in the folder where the jar file is to simulate missing data
+   2. Launch TutorTrack.
+   3. Addressbook.json should be repopulated with sample data again.
 
-1. _{ more test cases …​ }_

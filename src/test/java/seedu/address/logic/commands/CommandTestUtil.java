@@ -3,11 +3,17 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_EDIT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -59,6 +65,30 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TIMESLOT_DESC = " " + PREFIX_TIMESLOT + "Monday 430pm-6pm"; // missing ':' symbol
+
+    // For edit
+    public static final String NAME_DESC_AMY_EDIT = " " + PREFIX_NAME_EDIT + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB_EDIT = " " + PREFIX_NAME_EDIT + VALID_NAME_BOB;
+    public static final String PHONE_DESC_AMY_EDIT = " " + PREFIX_PHONE_EDIT + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_BOB_EDIT = " " + PREFIX_PHONE_EDIT + VALID_PHONE_BOB;
+    public static final String EMAIL_DESC_AMY_EDIT = " " + PREFIX_EMAIL_EDIT + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_BOB_EDIT = " " + PREFIX_EMAIL_EDIT + VALID_EMAIL_BOB;
+    public static final String ADDRESS_DESC_AMY_EDIT = " " + PREFIX_ADDRESS_EDIT + VALID_ADDRESS_AMY;
+    public static final String ADDRESS_DESC_BOB_EDIT = " " + PREFIX_ADDRESS_EDIT + VALID_ADDRESS_BOB;
+    public static final String TIMESLOT_DESC_SATURDAY_EDIT =
+            " " + PREFIX_TIMESLOT_EDIT + VALID_TIMESLOT_SATURDAY_3PM_5PM;
+    public static final String TIMESLOT_DESC_TUESDAY_EDIT =
+            " " + PREFIX_TIMESLOT_EDIT + VALID_TIMESLOT_TUESDAY_1130AM_130PM;
+    public static final String GRADE_CA1_100_EDIT = " " + PREFIX_GRADE_EDIT + VALID_GRADE_CA1_100;
+    public static final String GRADE_FINALS_20_EDIT = " " + PREFIX_GRADE_EDIT + VALID_GRADE_FINALS_20;
+
+    public static final String INVALID_NAME_DESC_EDIT = " " + PREFIX_NAME_EDIT + "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC_EDIT = " " + PREFIX_PHONE_EDIT + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC_EDIT = " " + PREFIX_EMAIL_EDIT + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_ADDRESS_DESC_EDIT =
+            " " + PREFIX_ADDRESS_EDIT; // empty string not allowed for addresses
+    public static final String INVALID_TIMESLOT_DESC_EDIT =
+            " " + PREFIX_TIMESLOT_EDIT + "Monday"; // missing '4pm-7pm' symbol
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
