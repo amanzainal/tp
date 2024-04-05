@@ -172,7 +172,7 @@ Grades can be added and edited with the add and edit command with the prefix `g/
 
 Given below are example usages scenario of how adding grades behaves.
 * The user executes `add n/David … g/ca1: 100` command to add a new student with one grade, with the test name being `ca1` and the score attained `100`
-* The user executes `add n/David … g/ca1: 100 g/ ca2: 50` command to add a new student with two grade, 
+* The user executes `add n/David … g/ca1: 100 g/ ca2: 50` command to add a new student with two grade,
 with the first test name being `ca1` and the score attained `100` and the second test name being `ca2` and the score attained `50`
 * The user executes `add n/David …` command without any g/ prefixes, adding a new student with no grades, which is permissible.
 
@@ -256,7 +256,7 @@ The following sequence diagram shows how an undo operation goes through the `Log
 #### Implementation
 The proposed enhancement aims to improve the current edit functionality within our system.
 Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user.
-This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing. 
+This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing.
 Therefore, the proposed implementation focuses on changing the edit behavior to only modify one parameter at a time while retaining the previous values for other parameters.
 
 How the feature is implemented (or is going to be implemented).

@@ -10,8 +10,8 @@
 
 ![Ui](images/Ui.png)
 
-**TutorTrack is a desktop application for managing your student's details.** It provides fast access to tutors' 
-students contact details, optimized for users who prefer a CLI-driven interface. This serves as a powerful contact 
+**TutorTrack is a desktop application for managing your student's details.** It provides fast access to tutors'
+students contact details, optimized for users who prefer a CLI-driven interface. This serves as a powerful contact
 management tool designed for academic and professional use by streamlining tasks and enhancing organization.
 
 * If you are interested in using TutorTrack, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
