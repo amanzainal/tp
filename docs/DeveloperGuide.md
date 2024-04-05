@@ -196,6 +196,44 @@ Given below are example usages scenario of how adding timeslots behaves.
   one timeslot on Saturdays 4pm-6pm and the other on Mondays 11:30am-1:30pm.
 * The user executes `add n/David …` command without any t/ prefixes, adding a new student with no timeslots, which is permissible.
 
+
+### Sort Feature
+
+#### Implementation
+
+The sort feature allows the user to sort students based on the grades of a specified test. It is facilitated by `SortCommand`, which extends `Command` and uses a comparator to sort the students in either ascending or descending order based on their grades.
+
+Given below are example usage scenarios of how the sort behaves:
+
+1. The user executes `sort Math` command to sort the students by their Math test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their Math grades and then uses this comparator to sort the list of students in the `Model`.
+2. The user executes `sort English /r` command to sort the students by their English test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
+
+Here's a simplified class diagram of the sort feature:
+
+<puml src="diagrams/SortFeatureClassDiagram.puml" alt="Class Diagram for Sort Feature" />
+
+The sequence diagram below shows how the sort feature works within the `Logic` component:
+
+<puml src="diagrams/SortFeatureSequenceDiagram.puml" alt="Sequence Diagram for Sort Feature" />
+
+#### Design Considerations
+
+**Aspect: Sorting of students based on test grades**
+
+* **Alternative 1 (current choice):** Use a comparator to sort students by grades.
+  * Pros: Easy to implement and understand. Makes use of Java's built-in sorting algorithm, ensuring efficiency.
+  * Cons: Only sorts based on one attribute at a time. If students have the same grade, their order is determined by the list's original order, which might not be desirable in all cases.
+
+* **Alternative 2:** Implement a custom sorting algorithm that can sort based on multiple attributes.
+  * Pros: Allows for more complex sorting criteria, such as sorting by name if grades are equal.
+  * Cons: More difficult to implement and test. Increased complexity could lead to bugs.
+
+#### Usage
+
+* Sorting students by test grades allows tutors to quickly identify top performers or those who might need additional support for a specific test.
+* This feature enhances the tutor's ability to manage and track student performance efficiently.
+
+
 ###  Filter feature
 
 ####  Implementation
@@ -208,7 +246,7 @@ returning `true` if any of the student's timeslots matches the keywords, and `fa
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-<puml src="diagrams/FilterSequenceDiagram-Logic.puml" alt="FilterSequenceDiagram-Logic" />
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="FilterSequenceDiagram-Logic" />
 
 <box type="info" seamless>
 
