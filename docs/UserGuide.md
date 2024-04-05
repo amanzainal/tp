@@ -147,6 +147,20 @@ Examples:
 * `filter Saturday Sunday` returns all students with `Saturday` or `Sunday` in their timeslot<br>
 ![result for 'find alex david'](images/filterSaturdayResult.png)
 
+### Sorting students by grades: `sort`
+
+Sorts the list of students in the address book by the grades of a specified test.
+
+Format: `sort TEST_NAME [/r]`
+
+Sorts students based on their grades for the specified TEST_NAME.
+If /r is specified, the students will be sorted in ascending order (lowest grade first). Otherwise, students will be sorted in ascending order (highest grade first).
+The TEST_NAME is case-sensitive.
+Examples:
+
+sort Math sorts the students by their grades in Math in ascending order.
+sort English /r sorts the students by their grades in English in descending order.
+
 ### Deleting a student : `delete`
 
 Deletes the specified student from the address book.
@@ -214,5 +228,6 @@ Furthermore, certain edits can cause TutorTrack to behave in unexpected ways (e.
 | **Edit**   | `edit INDEX !n or !p or !e or !a or !t or !g` <br> e.g.,`edit 2 !n`                                                                                                                            |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
 | **Filter** | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter Saturday Sunday`                                                                                                                            |
+| **Sort**   | `sort TEST_NAME [/r]` <br> e.g., `sort Math`, `sort English /r`                                                                                                                                |
 | **List**   | `list`                                                                                                                                                                                         |
 | **Help**   | `help`                                                                                                                                                                                         |
