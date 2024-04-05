@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "Developer guide"
-    pageNav: 3
+  title: "Developer guide"
+  pageNav: 3
 ---
 
 # TutorTrack Developer Guide
