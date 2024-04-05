@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # TutorTrack Developer Guide
@@ -80,7 +80,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
@@ -103,7 +103,6 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a student).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -197,6 +196,41 @@ Given below are example usages scenario of how adding timeslots behaves.
   one timeslot on Saturdays 4pm-6pm and the other on Mondays 11:30am-1:30pm.
 * The user executes `add n/David …` command without any t/ prefixes, adding a new student with no timeslots, which is permissible.
 
+
+### Sort Feature
+
+#### Implementation
+
+The sort feature allows the user to sort students based on the grades of a specified test. It is facilitated by `SortCommand`, which extends `Command` and uses a comparator to sort the students in either ascending or descending order based on their grades.
+
+Given below are example usage scenarios of how the sort behaves:
+
+1. The user executes `sort Math` command to sort the students by their Math test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their Math grades and then uses this comparator to sort the list of students in the `Model`.
+2. The user executes `sort English /r` command to sort the students by their English test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
+
+Here's a simplified class diagram of the sort feature:
+
+<puml src="diagrams/SortFeatureClassDiagram.puml" alt="Class Diagram for Sort Feature" />
+
+
+#### Design Considerations
+
+**Aspect: Sorting of students based on test grades**
+
+* **Alternative 1 (current choice):** Use a comparator to sort students by grades.
+  * Pros: Easy to implement and understand. Makes use of Java's built-in sorting algorithm, ensuring efficiency.
+  * Cons: Only sorts based on one attribute at a time. If students have the same grade, their order is determined by the list's original order, which might not be desirable in all cases.
+
+* **Alternative 2:** Implement a custom sorting algorithm that can sort based on multiple attributes.
+  * Pros: Allows for more complex sorting criteria, such as sorting by name if grades are equal.
+  * Cons: More difficult to implement and test. Increased complexity could lead to bugs.
+
+#### Usage
+
+* Sorting students by test grades allows tutors to quickly identify top performers or those who might need additional support for a specific test.
+* This feature enhances the tutor's ability to manage and track student performance efficiently.
+
+
 ###  Filter feature
 
 ####  Implementation
@@ -209,7 +243,7 @@ returning `true` if any of the student's timeslots matches the keywords, and `fa
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-<puml src="diagrams/FilterSequenceDiagram-Logic.puml" alt="FilterSequenceDiagram-Logic" />
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="FilterSequenceDiagram-Logic" />
 
 <box type="info" seamless>
 
@@ -254,11 +288,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th Student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new Student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -268,7 +302,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the Student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -324,7 +358,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the Student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -521,7 +555,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 Students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should not take more than 30 MB of storage space.
 5.  The application should respond to user input within 1 second.
@@ -568,17 +602,17 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 
-### Deleting a person
+### Deleting a Student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a Student while all Students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all Students using the `list` command. Multiple Students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No Student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
