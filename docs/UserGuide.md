@@ -107,7 +107,7 @@ Format: `edit INDEX !n | !p | !e | !a | !t | !g`
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * Only one of the variable fields must be provided.
 * Existing values will be updated to the input values.
-* Adding and modifying multiple tags and grades are allowed, i.e. they will not be overwritten.
+* Adding and modifying multiple timeslots and grades are allowed, i.e. they will not be overwritten.
 
 Examples:
 *  `edit 1 !p` will display `edit 1 phone: {previous phone number}`, prompting user to make changes to the phone number of the 1st student.
