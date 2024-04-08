@@ -12,6 +12,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.student.Student;
 
 /**
@@ -47,6 +48,7 @@ public class AddCommand extends Command {
      */
     public AddCommand(Student student) {
         requireNonNull(student);
+
         toAdd = student;
     }
 

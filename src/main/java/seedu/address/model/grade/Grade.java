@@ -26,8 +26,6 @@ public class Grade {
     public static final String TEST_NAME_VALIDATION_REGEX = ".+?";
     public static final String GRADE_VALIDATION_REGEX = "(100|[1-9]?[0-9])$";
 
-    public static final String VALIDATION_REGEX = TEST_NAME_VALIDATION_REGEX + ":\\s*" + GRADE_VALIDATION_REGEX;
-
     public final String testAndGrade;
     public final String testName;
     public final String grade;
@@ -39,8 +37,10 @@ public class Grade {
      */
     public Grade(String testAndGrade) {
         requireNonNull(testAndGrade);
-        checkArgument(isValidGrade(testAndGrade.trim()), MESSAGE_CONSTRAINTS);
         String[] parts = testAndGrade.split(":", 2);
+        checkArgument(parts.length == 2, MESSAGE_CONSTRAINTS);
+        checkArgument(parts[0].trim().matches(TEST_NAME_VALIDATION_REGEX), MESSAGE_CONSTRAINTS);
+        checkArgument(parts[1].trim().matches(GRADE_VALIDATION_REGEX), MESSAGE_CONSTRAINTS);
         this.testName = parts[0].trim();
         this.grade = parts[1].trim();
         this.testAndGrade = testAndGrade;
@@ -50,7 +50,12 @@ public class Grade {
      * Returns true if a given string is a valid grade.
      */
     public static boolean isValidGrade(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String[] parts = test.split(":", 2);
+        if (parts.length != 2) {
+            return false;
+        }
+        return parts[0].trim().matches(TEST_NAME_VALIDATION_REGEX)
+                && parts[1].trim().matches(GRADE_VALIDATION_REGEX);
     }
 
     @Override
@@ -75,5 +80,9 @@ public class Grade {
 
     public String toString() {
         return testName + ": " + grade;
+    }
+
+    public String getTestAndGrade() {
+        return testAndGrade;
     }
 }
