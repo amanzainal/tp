@@ -15,7 +15,7 @@ public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS = "Grades should be of the format Test: Grade "
             + "and adhere to the following constraints:\n"
-            + "1. The Test name should not be empty"
+            + "1. The Test name should not be empty.\n"
             + "2. This is followed by a ': ' and then a grade. \n"
             + "The grade must:\n"
             + "    - represent the percentage gotten in the test rounded to the nearest whole number\n"
