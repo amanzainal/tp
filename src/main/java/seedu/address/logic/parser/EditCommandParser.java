@@ -155,9 +155,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Set<Timeslots> timeslotSet = new HashSet<>();
         for (String timeslotString : timeslots) {
             String trimmedTimeslotString = timeslotString.trim();
-            if (!Timeslots.isValidTimeslot(trimmedTimeslotString)) {
-                throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
-            }
+
             // Remove leading and trailing curly braces if present
             if (trimmedTimeslotString.startsWith("[[") && trimmedTimeslotString.endsWith("]]")) {
                 trimmedTimeslotString = trimmedTimeslotString.substring(2, trimmedTimeslotString.length() - 2);
@@ -190,9 +188,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Set<Grade> gradeSet = new HashSet<>();
         for (String gradeString : grades) {
             String trimmedGradeString = gradeString.trim();
-            if (!Grade.isValidGrade(trimmedGradeString)) {
-                throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
-            }
+
             // Remove leading and trailing curly braces if present
             if (trimmedGradeString.startsWith("[[") && trimmedGradeString.endsWith("]]")) {
                 trimmedGradeString = trimmedGradeString.substring(2, trimmedGradeString.length() - 2);
