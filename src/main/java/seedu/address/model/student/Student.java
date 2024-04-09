@@ -117,13 +117,13 @@ public class Student {
             return false;
         }
 
-        Student otherStduent = (Student) other;
-        return name.equals(otherStduent.name)
-                && phone.equals(otherStduent.phone)
-                && email.equals(otherStduent.email)
-                && address.equals(otherStduent.address)
-                && timeslots.equals(otherStduent.timeslots)
-                && grades.equals(otherStduent.grades);
+        Student otherStudent = (Student) other;
+        return name.equals(otherStudent.name)
+                && phone.equals(otherStudent.phone)
+                && email.equals(otherStudent.email)
+                && address.equals(otherStudent.address)
+                && timeslots.equals(otherStudent.timeslots)
+                && grades.equals(otherStudent.grades);
     }
 
     @Override
