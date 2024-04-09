@@ -65,4 +65,7 @@ public class Timeslots {
         return '[' + timeslot + ']';
     }
 
+    public String replace(String oldString, String newString) {
+        return timeslot.replace(oldString, newString);
+    }
 }

@@ -36,7 +36,8 @@ public class Messages {
      */
     public static String format(Student student) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(student.getName())
+        builder.append("Name: ")
+                .append(student.getName())
                 .append("; Phone: ")
                 .append(student.getPhone())
                 .append("; Email: ")
@@ -44,9 +45,16 @@ public class Messages {
                 .append("; Address: ")
                 .append(student.getAddress())
                 .append("; Timeslot: ");
-        student.getTimeslots().forEach(builder::append);
-        builder.append("; Grades: ");
-        student.getGrades().forEach(builder::append);
+        String timeslotString = student.getTimeslots().stream()
+                .map(timeslot -> timeslot.replace("[", "").replace("]", ""))
+                .collect(Collectors.joining(", "));
+        builder.append(timeslotString)
+                .append("; Grades: ");
+        String gradesString = student.getGrades().stream()
+                .map(grade -> grade.testName + ": " + grade.grade)
+                .collect(Collectors.joining(", "));
+        builder.append(gradesString).append(";");;
+
         return builder.toString();
     }
 
