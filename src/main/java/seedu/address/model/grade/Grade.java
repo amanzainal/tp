@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.timeslots.Timeslots;
+
 /**
  * Represents a Student's Grade in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
@@ -49,13 +53,12 @@ public class Grade {
     /**
      * Returns true if a given string is a valid grade.
      */
-    public static boolean isValidGrade(String test) {
+    public static boolean isValidGrade(String test) throws ParseException {
         String[] parts = test.split(":", 2);
-        if (parts.length != 2) {
-            return false;
+        if (parts.length != 2 || !parts[0].trim().matches(TEST_NAME_VALIDATION_REGEX) || !parts[1].trim().matches(GRADE_VALIDATION_REGEX)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return parts[0].trim().matches(TEST_NAME_VALIDATION_REGEX)
-                && parts[1].trim().matches(GRADE_VALIDATION_REGEX);
+        return true;
     }
 
     @Override
