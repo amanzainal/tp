@@ -90,7 +90,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOTS]…​ [g/GRAD
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Saturday 5pm-7pm g/ca1: 2`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Saturday 5pm-7pm g/ca1: 2 g/ca2: 80`
 
 ### Listing all students : `list`
 
@@ -105,13 +105,16 @@ Edits an existing student in the TutorTrack.
 Format: `edit INDEX !n | !p | !e | !a | !t | !g`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* Only one of the variable fields must be provided.
+* **Only one** of the `VARIABLE` field must be provided.
 * Existing values will be updated to the input values.
-* Adding and modifying multiple tags and grades are allowed, i.e. they will not be overwritten.
+* Allow modifications (add/edit/delete) in timeslots and grades, i.e. they will not be overwritten. 
+  * Add: Separate using commas, i.e. `edit 2 grade: ca1: 2, ca2: 80` to `edit 2 grade: ca1: 2, ca2: 80, ca3: 66`
+  * Edit: Make changes to the current data, i.e. `edit 2 timeslot: Saturday 5pm-7pm` to `edit 2 timeslot: Monday 2pm-3pm`
+  * Delete: Remove the data, i.e. `edit 2 grade: ca1: 2, ca2: 80, ca3: 66` to `edit 2 grade: ca1: 2, ca3: 66`
 
 Examples:
-*  `edit 1 !p` will display `edit 1 phone: {previous phone number}`, prompting user to make changes to the phone number of the 1st student.
-*  `edit 2 !g` will display `edit 2 grade: {previous grades}`, prompting user to add (single or multiple) additional grades or modify current grades of the 2nd student.
+*  `edit 1 !p` will display `edit 1 phone: {current phone number}`, prompting user to make changes to the phone number of the 1st student.
+*  `edit 2 !g` will display `edit 2 grade: {current grades}`, prompting user to modify (add/edit/delete) grades of the 2nd student.
 
 ### Locating students by name: `find`
 
