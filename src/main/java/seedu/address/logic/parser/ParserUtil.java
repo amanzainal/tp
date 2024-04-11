@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.timeslots.Timeslots.isStartTimeBeforeEndTime;
-import static seedu.address.model.timeslots.Timeslots.isValidTimeslot;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -107,7 +105,7 @@ public class ParserUtil {
     public static Timeslots parseTimeslot(String timeslot) throws ParseException {
         requireNonNull(timeslot);
         String trimmedTimeslot = timeslot.trim();
-        if (!isValidTimeslot(trimmedTimeslot) || !isStartTimeBeforeEndTime(trimmedTimeslot)) {
+        if (!Timeslots.isValidTimeslot(trimmedTimeslot)) {
             throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
         }
         return new Timeslots(trimmedTimeslot);

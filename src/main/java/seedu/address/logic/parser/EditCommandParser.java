@@ -15,7 +15,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_EDIT;
 import static seedu.address.model.grade.Grade.isValidGrade;
-import static seedu.address.model.timeslots.Timeslots.isStartTimeBeforeEndTime;
 import static seedu.address.model.timeslots.Timeslots.isValidTimeslot;
 
 import java.util.Arrays;
@@ -164,7 +163,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             // Split by commas to handle multiple timeslots
             String[] timeslotArray = trimmedTimeslotString.split(",");
             for (String timeslot : timeslotArray) {
-                if (!isValidTimeslot(timeslot.trim()) || !isStartTimeBeforeEndTime(timeslot.trim())) {
+                if (!isValidTimeslot(timeslot.trim())) {
                     throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
                 }
                 timeslotSet.add(new Timeslots(timeslot.trim()));
