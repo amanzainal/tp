@@ -47,8 +47,8 @@ public class StudentTest {
         assertFalse(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingCharacter = VALID_NAME_BOB + "e";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingCharacter).build();
+        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameStudent(editedBob));
     }
 

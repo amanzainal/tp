@@ -40,17 +40,17 @@ public class TypicalStudents {
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTimeslots("Tuesday 7pm-9pm").build();
-    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("94822243")
+    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("94824273")
+    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("64824421")
+    public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("84824242")
+    public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("84821313")
+    public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - student's details found in {@code CommandTestUtil}
