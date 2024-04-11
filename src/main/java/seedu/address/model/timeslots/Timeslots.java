@@ -17,7 +17,7 @@ public class Timeslots {
         + "DayOfWeek StartTime-EndTime, and adhere to the following constraints:\n"
         + "1. The DayOfWeek is any day from Monday to Sunday.\n"
         + "2. StartTime and EndTime include hours and optional minutes in 12-hour format. \n"
-        + "23. StartTime must be earlier than EndTime. "
+        + "3. StartTime must be earlier than EndTime. "
         + "Minutes, if included, should be separated from hours by a colon. \n"
         + "For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'.\n";
 
