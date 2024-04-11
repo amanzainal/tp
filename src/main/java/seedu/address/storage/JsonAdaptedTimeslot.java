@@ -39,7 +39,7 @@ class JsonAdaptedTimeslot {
      * @throws IllegalValueException if there were any data constraints violated in the adapted timeslot.
      */
     public Timeslots toModelType() throws IllegalValueException {
-        if (!Timeslots.isValidTimeslot(timeslot) || !Timeslots.isStartTimeBeforeEndTime(timeslot)) {
+        if (!Timeslots.isValidTimeslot(timeslot)) {
             throw new IllegalValueException(Timeslots.MESSAGE_CONSTRAINTS);
         }
         return new Timeslots(timeslot);
