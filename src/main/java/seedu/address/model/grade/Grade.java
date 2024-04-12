@@ -85,4 +85,8 @@ public class Grade {
     public String toString() {
         return testName + ": " + grade;
     }
+
+    public String getTestAndGrade() {
+        return testAndGrade;
+    }
 }
