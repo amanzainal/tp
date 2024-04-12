@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Timeslots {
 
     public static final String MESSAGE_CONSTRAINTS = "Timeslot should be of the format: "
-        + "DayOfWeek StartTime-EndTime, and adhere to the following constraints:\n"
+        + "DayOfWeek StartTime-EndTime, and adhere to the following constraints:"
         + "1. The DayOfWeek is any day from Monday to Sunday.\n"
         + "2. StartTime and EndTime include hours and optional minutes in 12-hour format. "
         + "Minutes, if included, should be separated from hours by a colon. \n"
