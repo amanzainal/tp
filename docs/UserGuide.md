@@ -52,12 +52,15 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TIMESLOTS]` can be used as `n/John Doe t/Saturday 4pm-6pm` or as `n/John Doe`.
-* e.g `n/NAME [g/GRADE]` can be used as `n/John Doe g/ca1: 100` or as `n/John Doe`.
+  e.g. `n/NAME [t/TIMESLOTS]` can be used as `n/John Doe t/Saturday 4pm-6pm` or as `n/John Doe`.
+* e.g. `n/NAME [g/GRADE]` can be used as `n/John Doe g/ca1: 100` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TIMESLOTS]…​` can be used as ` ` (i.e. 0 times), `t/Saturday 4pm-6pm`, `t/Saturday 4pm-6pm t/Monday 4pm-6pm` etc.
 * e.g. `[g/GRADE]…​` can be used as ` ` (i.e. 0 times), `g/ca1: 100`, `g/ca1: 100 g/ca1: 99` etc.
+
+* Items in curly brackets refers to the current data.<br>
+  e.g. `edit 1 grade: {GRADE}` display the current grade of index 1 user, `edit 1 grade: {eoy: 88}`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -108,7 +111,7 @@ Edits an existing student in the TutorTrack.
 Format: `edit INDEX !n | !p | !e | !a | !t | !g`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* **Only one** of the `VARIABLE` field must be provided.
+* **Only one** variable field must be provided, i.e. either !n or !p and not both.
 * Existing values will be updated to the input values.
 * Allow modifications (add/edit/delete) in timeslots and grades, i.e. they will not be overwritten. 
   * Add: Separate using commas, i.e. `edit 2 grade: ca1: 2, ca2: 80` to `edit 2 grade: ca1: 2, ca2: 80, ca3: 66`
@@ -118,8 +121,8 @@ Format: `edit INDEX !n | !p | !e | !a | !t | !g`
 **Note:** Students with duplicate names are not allowed. Validity check for duplicated names are case-sensitive. e.g John Doe is not the same as John doe
 
 Examples:
-*  `edit 1 !p` will display `edit 1 phone: {current phone number}`, prompting user to make changes to the phone number of the 1st student.
-*  `edit 2 !g` will display `edit 2 grade: {current grades}`, prompting user to modify (add/edit/delete) grades of the 2nd student.
+*  `edit 1 !p` will display `edit 1 phone: {PHONE_NUMBER}`, prompting user to make changes to the current phone number of the 1st student.
+*  `edit 2 !g` will display `edit 2 grade: {GRADE}`, prompting user to modify (add/edit/delete) current grades of the 2nd student.
 
 ### Locating students by name: `find`
 
