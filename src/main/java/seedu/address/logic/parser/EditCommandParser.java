@@ -14,6 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_EDIT;
+import static seedu.address.model.grade.Grade.isValidGrade;
+import static seedu.address.model.timeslots.Timeslots.isValidTimeslot;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -52,6 +54,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .filter(option -> argMultimap.getValue(option).isPresent())
                 .count();
 
+        // handle error if user input more than 1 character after !
+        if (args.contains("!") && args.indexOf("!") < args.length() - 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        // handle error if user wants to edit more than 1 variable
         if (count > 1) {
             throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
         }
@@ -148,9 +155,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Set<Timeslots> timeslotSet = new HashSet<>();
         for (String timeslotString : timeslots) {
             String trimmedTimeslotString = timeslotString.trim();
-            if (!Timeslots.isValidTimeslot(trimmedTimeslotString)) {
-                throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
-            }
+
             // Remove leading and trailing curly braces if present
             if (trimmedTimeslotString.startsWith("[[") && trimmedTimeslotString.endsWith("]]")) {
                 trimmedTimeslotString = trimmedTimeslotString.substring(2, trimmedTimeslotString.length() - 2);
@@ -158,6 +163,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             // Split by commas to handle multiple timeslots
             String[] timeslotArray = trimmedTimeslotString.split(",");
             for (String timeslot : timeslotArray) {
+                if (!isValidTimeslot(timeslot.trim())) {
+                    throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
+                }
                 timeslotSet.add(new Timeslots(timeslot.trim()));
             }
         }
@@ -180,9 +188,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Set<Grade> gradeSet = new HashSet<>();
         for (String gradeString : grades) {
             String trimmedGradeString = gradeString.trim();
-            if (!Grade.isValidGrade(trimmedGradeString)) {
-                throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
-            }
+
             // Remove leading and trailing curly braces if present
             if (trimmedGradeString.startsWith("[[") && trimmedGradeString.endsWith("]]")) {
                 trimmedGradeString = trimmedGradeString.substring(2, trimmedGradeString.length() - 2);
@@ -190,6 +196,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             // Split by commas to handle multiple grades
             String[] gradeArray = trimmedGradeString.split(",");
             for (String grade : gradeArray) {
+                if (!isValidGrade(grade.trim())) {
+                    throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+                }
                 gradeSet.add(new Grade(grade.trim()));
             }
         }

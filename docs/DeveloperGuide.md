@@ -168,7 +168,7 @@ Grades
   + the grade is a value from 0 to 100, representing the percentage gotten in the test rounded to the nearest whole number
 * are an optional parameter
 
-Grades can be added and edited with the add and edit command with the prefix `g/`.
+Grades can be added and edited with the add and edit command with the prefix `g/` and `!g` respectively.
 
 Given below are example usages scenario of how adding grades behaves.
 * The user executes `add n/David … g/ca1: 100` command to add a new student with one grade, with the test name being `ca1` and the score attained `100`
@@ -188,7 +188,7 @@ Timeslots
     + For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'
 * are an optional parameter
 
-Timeslots can be added and edited with the add and edit command with the prefix `t/`.
+Timeslots can be added and edited with the add and edit command with the prefix `t/` and `!t` respectively.
 
 Given below are example usages scenario of how adding timeslots behaves.
 * The user executes `add n/David … t/Saturday 4pm-6pm` command to add a new student with one timeslot on Saturdays 4pm-6pm
@@ -461,11 +461,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 * 2e. The given timeslots are invalid.
-    * 2d1. System shows an error message.
+    * 2e1. System shows an error message.
 
       Use case ends.
-* 2e. The student exists in the database already.
-    * 2e1. System shows an error message.
+* 2f. The student exists in the database already.
+    * 2f1. System shows an error message.
 
       Use case ends.
 
@@ -475,7 +475,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list students.
 2. System displays the list of students.
 3. User requests to update a specific student information.
-4. System updates the student information.
+4. System displays the specific current data of the student.
+5. User update the current data of the student.
+6. System updates the student information.
 
    Use case ends.
 
@@ -485,20 +487,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. System shows an error message.
 
       Use case ends.
-* 3a. The given phone number is invalid.
+* 3a. The given index is invalid.
     * 3a1. System shows an error message.
 
       Use case ends.
-* 3b. The given email is invalid.
+* 3b. The given variable is invalid.
     * 3b1. System shows an error message.
 
       Use case ends.
-* 3c. The given grades are invalid.
+* 3c. The given variable is more than 1.
     * 3c1. System shows an error message.
 
       Use case ends.
-* 3d. The given index is invalid.
+* 3d. The given variable is less than 1.
     * 3d1. System shows an error message.
+
+      Use case ends.
+* 5a. The given phone number is invalid.
+    * 5a1. System shows an error message.
+
+      Use case ends.
+* 5b. The given email is invalid.
+    * 5b1. System shows an error message.
+
+      Use case ends.
+* 5c. The given grades are invalid.
+    * 5c1. System shows an error message.
+
+      Use case ends.
+* 5d. The given timeslots are invalid.
+    * 5d1. System shows an error message.
+
+      Use case ends.
+* 5e. The student exists in the database already.
+    * 5e1. System shows an error message.
 
       Use case ends.
 
