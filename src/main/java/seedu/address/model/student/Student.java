@@ -79,13 +79,13 @@ public class Student {
      * @param testName The name of the test to find the grade for.
      * @return The grade for the specified test as a String, or null if the student does not have a grade for that test.
      */
-    public String getGradeForTest(String testName) {
+    public int getGradeForTest(String testName) {
         for (Grade grade : grades) {
             if (grade.testName.equals(testName)) {
                 return grade.grade;
             }
         }
-        return null;
+        return 0;
     }
 
 

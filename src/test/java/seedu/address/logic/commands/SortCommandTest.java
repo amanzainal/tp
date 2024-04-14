@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -61,9 +60,9 @@ public class SortCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         TestNameEqualsKeywordPredicate predicate = preparePredicate(" ");
         Comparator<Student> gradeComparator = (student1, student2) -> {
-            String grade1 = Optional.ofNullable(student1.getGradeForTest(predicate.keyword)).orElse("0");
-            String grade2 = Optional.ofNullable(student2.getGradeForTest(predicate.keyword)).orElse("0");
-            return grade1.compareTo(grade2);
+            int grade1 = student1.getGradeForTest(predicate.keyword);
+            int grade2 = student2.getGradeForTest(predicate.keyword);
+            return Integer.compare(grade1, grade2);
         };
         SortCommand command = new SortCommand(predicate, false);
         expectedModel.sortFilteredStudentList(gradeComparator, predicate);
@@ -74,11 +73,11 @@ public class SortCommandTest {
     @Test
     public void execute_multipleKeywords_multiplestudentsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
-        TestNameEqualsKeywordPredicate predicate = preparePredicate("Ca1");
+        TestNameEqualsKeywordPredicate predicate = preparePredicate("ca1");
         Comparator<Student> gradeComparator = (student1, student2) -> {
-            String grade1 = Optional.ofNullable(student1.getGradeForTest(predicate.keyword)).orElse("0");
-            String grade2 = Optional.ofNullable(student2.getGradeForTest(predicate.keyword)).orElse("0");
-            return grade1.compareTo(grade2);
+            int grade1 = student1.getGradeForTest(predicate.keyword);
+            int grade2 = student2.getGradeForTest(predicate.keyword);
+            return Integer.compare(grade1, grade2);
         };
         SortCommand command = new SortCommand(predicate, false);
         expectedModel.sortFilteredStudentList(gradeComparator, predicate);
@@ -90,9 +89,9 @@ public class SortCommandTest {
     public void toStringMethod() {
         TestNameEqualsKeywordPredicate predicate = new TestNameEqualsKeywordPredicate("keyword");
         Comparator<Student> gradeComparator = (student1, student2) -> {
-            String grade1 = Optional.ofNullable(student1.getGradeForTest(predicate.keyword)).orElse("0");
-            String grade2 = Optional.ofNullable(student2.getGradeForTest(predicate.keyword)).orElse("0");
-            return grade1.compareTo(grade2);
+            int grade1 = student1.getGradeForTest(predicate.keyword);
+            int grade2 = student2.getGradeForTest(predicate.keyword);
+            return Integer.compare(grade1, grade2);
         };
         SortCommand sortCommand = new SortCommand(predicate, false);
         String expected = SortCommand.class.getCanonicalName() + "{predicate=" + predicate + ", "

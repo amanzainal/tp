@@ -17,7 +17,7 @@ public class TestNameEqualsKeywordPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return student.getGrades().stream()
-                .anyMatch(grades -> grades.testName.equalsIgnoreCase(keyword));
+                .anyMatch(grades -> grades.testName.equals(keyword));
     }
 
     @Override

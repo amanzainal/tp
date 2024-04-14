@@ -31,7 +31,7 @@ public class Grade {
 
     public final String testAndGrade;
     public final String testName;
-    public final String grade;
+    public final int grade;
 
     /**
      * Constructs an {@code Grade}.
@@ -45,7 +45,7 @@ public class Grade {
         checkArgument(parts[0].trim().matches(TEST_NAME_VALIDATION_REGEX), MESSAGE_CONSTRAINTS);
         checkArgument(parts[1].trim().matches(GRADE_VALIDATION_REGEX), MESSAGE_CONSTRAINTS);
         this.testName = parts[0].trim();
-        this.grade = parts[1].trim();
+        this.grade = Integer.parseInt(parts[1].trim());
         this.testAndGrade = testAndGrade;
     }
 
@@ -74,7 +74,7 @@ public class Grade {
         }
 
         Grade otherGrade = (Grade) other;
-        return testName.equals(otherGrade.testName) && grade.equals(otherGrade.grade);
+        return testName.equals(otherGrade.testName) && grade == otherGrade.grade;
     }
 
     @Override
