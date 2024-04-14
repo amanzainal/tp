@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/joelgoh1.png" width="200px">
 
 [[github](http://github.com/joelgoh1)]
-[[portfolio](team/joelgoh.md)]
+[[portfolio](team/joelgoh1.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines

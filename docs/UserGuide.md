@@ -6,7 +6,13 @@
 
 # TutorTrack User Guide
 
-TutorTrack is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorTrack can get your contact management tasks done faster than traditional GUI apps.
+Welcome, Tutors! Thank you for choosing TutorTrack! Managing your students' contacts has never been easier with our desktop app
+that is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+
+TutorTrack simplifies the consolidation and retrieval of student information, freeing you to concentrate on what you do
+best: teaching. This User Guide provides comprehensive details to help you utilise TutorTrack to its full potential,
+ensuring a smooth and efficient experience. Enjoy a hassle-free administration and focus more on your educational goals!
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,7 +23,7 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103-F08-4/tp/releases).
+1. Download the latest `tutorTrack.jar` from [here](https://github.com/AY2324S2-CS2103-F08-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -41,6 +47,16 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## User Interface
+![Ui](images/UiAnnotated.png)
+
+- The `taskbar` presents you with the option to access help and exit the programme. 
+- The `Commmand Box` would be where you can input your commands.
+- The `Result Display` is where TutorTrack displays the command results, either with a success message or an error message
+informing you of what requires fixing.
+- The `Student Panel` is where you view your students' contact information. A more detailed look into each student card is shown below.
+
+![Ui](images/StudentCardAnnotated.png)
 
 ## Features
 
