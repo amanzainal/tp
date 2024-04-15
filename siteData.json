@@ -65,7 +65,9 @@
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
         "deleting-a-student": "Deleting a Student",
-        "saving-data": "Saving data"
+        "saving-data": "Saving data",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements",
+        "planned-enhancements": "Planned Enhancements"
       },
       "headingKeywords": {}
     },
