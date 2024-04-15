@@ -565,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list students.
 2. System displays the list of students.
 3. User requests to delete a specific student information.
-4System delete the student information from the database.
+4. System delete the student information from the database.
 
    Use case ends.
 
@@ -771,9 +771,9 @@ testers are expected to do more *exploratory* testing.
 
 4. **Limit the address field to 140 characters:** Currently, the address field accepts very long inputs, but the UI truncates these at about 140 characters, which can lead to inconsistency and a loss of information. To ensure better consistency and visibility of address data in the UI, we plan to limit user input for the address field to 140 characters. This limitation will prevent overflow and ensure that the entire address is visible in the UI without truncation, thereby improving the user interface and experience.
 
-5. **Confirmation prompts for critical actions :** We can implement warning prompts for critical or potentially irreversible actions within the chat app. For instance, when a user attempts to delete a student, edit information of a student, or perform any action that could have significant consequences, a confirmation message could appear, prompting the user to confirm their intent (e.g. yes/no) before proceeding. This can prevent accidental or unintended actions, enhancing user control and reducing the risk of errors.
+5. **Confirmation prompts for critical actions:** We can implement warning prompts for critical or potentially irreversible actions within the chat app. For instance, when a user attempts to delete a student, edit information of a student, or perform any action that could have significant consequences, a confirmation message could appear, prompting the user to confirm their intent (e.g. yes/no) before proceeding. This can prevent accidental or unintended actions, enhancing user control and reducing the risk of errors.
 
-6. **Aggregate statistics for performance analysis :** We can introduce aggregate statistics such as average grades, highest and lowest grades, or grade distribution and display it as a list in the app. These statistics allow the tutor to have a quick overview of class performances and help them identify trends or areas of improvement, which aligns very closely to the objective of our app.
+6. **Aggregate statistics for performance analysis:** We can introduce aggregate statistics such as average grades, highest and lowest grades, or grade distribution and display it as a list in the app. These statistics allow the tutor to have a quick overview of class performances and help them identify trends or areas of improvement, which aligns very closely to the objective of our app.
 
 ## **Appendix: Effort**:
 
