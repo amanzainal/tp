@@ -42,12 +42,12 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandExecutor.execute(commandText);
+            CommandResult result = commandExecutor.execute(commandText);
             commandTextField.setText("");
 
             int index = extractIndex(commandText);
 
-            CommandResult result = commandExecutor.execute(commandText);
+
 
             if (commandText.contains("!")) {
                 int exclamationIndex = commandText.indexOf('!');
