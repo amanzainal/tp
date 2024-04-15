@@ -204,8 +204,8 @@ The sort feature allows the user to sort students based on the grades of a speci
 
 Given below are example usage scenarios of how the sort behaves:
 
-1. The user executes `sort Math` command to sort the students by their Math test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their Math grades and then uses this comparator to sort the list of students in the `Model`.
-2. The user executes `sort English /r` command to sort the students by their English test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
+1. The user executes `sort CA1` command to sort the students by their CA1 test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their CA1 grades and then uses this comparator to sort the list of students in the `Model`.
+EOY test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
 
 Here's a simplified class diagram of the sort feature:
 
