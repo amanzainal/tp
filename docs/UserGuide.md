@@ -6,7 +6,13 @@
 
 # TutorTrack User Guide
 
-TutorTrack is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorTrack can get your contact management tasks done faster than traditional GUI apps.
+Welcome, Tutors! Thank you for choosing TutorTrack! Managing your students' contacts has never been easier with our desktop app
+that is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+
+TutorTrack simplifies the consolidation and retrieval of student information, freeing you to concentrate on what you do
+best: teaching. This User Guide provides comprehensive details to help you utilise TutorTrack to its full potential,
+ensuring a smooth and efficient experience. Enjoy a hassle-free administration and focus more on your educational goals!
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,11 +23,11 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103-F08-4/tp/releases).
+1. Download the latest `tutorTrack.jar` from [here](https://github.com/AY2324S2-CS2103-F08-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tutorTrack.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -41,6 +47,18 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## User Interface
+![Ui](images/UiAnnotated.png)
+
+- The `taskbar` presents you with the option to access help and exit the programme. 
+- The `Commmand Box` would be where you can input your commands.
+- The `Result Display` is where TutorTrack displays the command results, either with a success message or an error message
+informing you of what requires fixing.
+- The `Student Panel` is where you view your students' contact information. A more detailed look into each student card is shown below.
+
+![Ui](images/StudentCardAnnotated.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
@@ -53,11 +71,11 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TIMESLOTS]` can be used as `n/John Doe t/Saturday 4pm-6pm` or as `n/John Doe`.
-* e.g. `n/NAME [g/GRADE]` can be used as `n/John Doe g/ca1: 100` or as `n/John Doe`.
+<br> e.g. `n/NAME [g/GRADE]` can be used as `n/John Doe g/ca1: 100` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TIMESLOTS]…​` can be used as ` ` (i.e. 0 times), `t/Saturday 4pm-6pm`, `t/Saturday 4pm-6pm t/Monday 4pm-6pm` etc.
-* e.g. `[g/GRADE]…​` can be used as ` ` (i.e. 0 times), `g/ca1: 100`, `g/ca1: 100 g/ca1: 99` etc.
+<br>  e.g. `[g/GRADE]…​` can be used as ` ` (i.e. 0 times), `g/ca1: 100`, `g/ca1: 100 g/ca1: 99` etc.
 
 * Items in curly brackets refers to the current data.<br>
   e.g. `edit 1 grade: {GRADE}` display the current grade of index 1 user, `edit 1 grade: {eoy: 88}`.
@@ -84,11 +102,14 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOTS]…​ [g/GRADE]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOTS]…​ [g/GRADES]…​`
 
 <box type="tip" seamless>
 
 **Tip:** A student can have any number of timeslots or grades (including 0)
+</box>
+
+<box type="info" seamless>
 
 **Note:** Students with duplicate names are not allowed. Validity check for duplicated names are case-sensitive. 
 e.g John Doe is not the same as John doe 
@@ -97,6 +118,8 @@ e.g John Doe is not the same as John doe
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Saturday 5pm-7pm g/ca1: 2 g/ca2: 80`
+
+For more information about each accepted parameter, refer to the [Accepted Parameters](#accepted-parameters) below.
 
 ### Listing all students : `list`
 
@@ -108,21 +131,26 @@ Format: `list`
 
 Edits an existing student in the TutorTrack.
 
-Format: `edit INDEX !n | !p | !e | !a | !t | !g`
+Format: `edit INDEX !n or !p or !e or !a or !t or !g`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * **Only one** variable field must be provided, i.e. either !n or !p and not both.
 * Existing values will be updated to the input values.
 * Allow modifications (add/edit/delete) in timeslots and grades, i.e. they will not be overwritten. 
-  * Add: Separate using commas, i.e. `edit 2 grade: ca1: 2, ca2: 80` to `edit 2 grade: ca1: 2, ca2: 80, ca3: 66`
-  * Edit: Make changes to the current data, i.e. `edit 2 timeslot: Saturday 5pm-7pm` to `edit 2 timeslot: Monday 2pm-3pm`
-  * Delete: Remove the data, i.e. `edit 2 grade: ca1: 2, ca2: 80, ca3: 66` to `edit 2 grade: ca1: 2, ca3: 66`
+  * Add: Separate using commas, i.e. `ca1: 2, ca2: 80` to `ca1: 2, ca2: 80, ca3: 66`
+  * Edit: Make changes to the current data, i.e. `Saturday 5pm-7pm` to `Monday 5pm-7pm`
+  * Delete: Remove the data, i.e. `ca1: 2, ca2: 80, ca3: 66` to `ca1: 2, ca3: 66`
+
+<box type="info" seamless>
 
 **Note:** Students with duplicate names are not allowed. Validity check for duplicated names are case-sensitive. e.g John Doe is not the same as John doe
+</box>
 
 Examples:
 *  `edit 1 !p` will display `edit 1 phone: {PHONE_NUMBER}`, prompting user to make changes to the current phone number of the 1st student.
 *  `edit 2 !g` will display `edit 2 grade: {GRADE}`, prompting user to modify (add/edit/delete) current grades of the 2nd student.
+
+For more information about each accepted parameter, refer to the [Accepted Parameters](#accepted-parameters) below.
 
 ### Locating students by name: `find`
 
@@ -156,7 +184,7 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `filter Sat` returns all students with `Saturday` in their timeslot
 * `filter Saturday Sunday` returns all students with `Saturday` or `Sunday` in their timeslot<br>
-![result for 'find alex david'](images/filterSaturdayResult.png)
+![result for 'filter Saturday'](images/filterSaturdayResult.png)
 
 ### Sorting students by grades: `sort`
 
@@ -229,15 +257,15 @@ Furthermore, certain edits can cause TutorTrack to behave in unexpected ways (e.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Accepted Parameters
-| Prefix       | Stands for                                                                                                 | Accepted Characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Prefix       | Stands for                                                                                                 | Validity checks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |--------------|------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **n/ or !n** | Name                                                                                                       | Must only contain letters and spaces, and it should not be blank. If name requires special characters, please find workarounds. e.g son of instead of s/o                                                                                                                                                                                                                                                                                                                                                                               |
-| **p/ or !p** | Phone Number                                                                                               | Must only contain numbers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **n/ or !n** | Name                                                                                                       | Must only contain alphanumeric characters and spaces, and it should not be blank. If name requires special characters, please find workarounds. e.g son of instead of s/o                                                                                                                                                                                                                                                                                                                                                               |
+| **p/ or !p** | Phone Number                                                                                               | Must only contain numbers and should be at least 3 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **e/ or !e** | Email                                                                                                      | Must be of the format: `local-part@domain`. <br/> Local part should start with a alphanumeric character, only contain alphanumeric characters and `+`, `_`. `.`. `-` <br/> This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters, have each domain label consist of alphanumeric characters separated only by hyphens, if any. |
-| **a/ or !a** | Address                                                                                                    | Can take any value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                                                                                              |
-| **t/ or !t** | Timeslot                                                                                                   | Timeslot should be of the format: `DayOfWeek StartTime-EndTime`. <br/> The DayOfWeek is any day from Monday to Sunday. <br/> StartTime and EndTime include hours and optional minutes in 12-hour format. Minutes, if included, should be separated from hours by a colon.                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                     |
-| **g/ or !g** | TestName and Grade. Grade represents the percentage gotten in the test rounded to the nearest whole number | Grades should be of the format `TestName: Grade` <br/> The TestName should not be empty. This is followed by a `: ` and then a grade which must be a whole number between [0, 100]                                                                                                                                                                                                                                                                                                                                                      |
-| **r/**       | Reverse the order of sort                                                                                  | Does not require any input after prefix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **a/ or !a** | Address                                                                                                    | Can take any value but must not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                              
+| **t/ or !t** | Timeslot                                                                                                   | Timeslot should be of the format: `DayOfWeek StartTime-EndTime`. <br/> The DayOfWeek is any day from Monday to Sunday. <br/> StartTime and EndTime include hours and optional minutes in 12-hour format. Minutes, if included, should be separated from hours by a colon. No checks are done to ensure that startTime is before endTime, so please take caution when entering timing details.                                                                                                                                           |                                                                                                                                                                                                                     
+| **g/ or !g** | TestName and Grade. Grade represents the percentage gotten in the test rounded to the nearest whole number | Grades should be of the format `TestName: Grade` <br/> The TestName should not be empty. This is followed by a `: ` and then a grade which must be a whole number in the range [0, 100]                                                                                                                                                                                                                                                                                                                                                 |
+| **/r**       | Reverse the order of sort                                                                                  | Does not require any input after prefix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

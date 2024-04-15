@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -52,9 +51,9 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Comparator<Student> gradeComparator = (student1, student2) -> {
-            String grade1 = Optional.ofNullable(student1.getGradeForTest(predicate.keyword)).orElse("0");
-            String grade2 = Optional.ofNullable(student2.getGradeForTest(predicate.keyword)).orElse("0");
-            return grade1.compareTo(grade2);
+            int grade1 = student1.getGradeForTest(predicate.keyword);
+            int grade2 = student2.getGradeForTest(predicate.keyword);
+            return Integer.compare(grade1, grade2);
         };
 
         if (isReverse) {
