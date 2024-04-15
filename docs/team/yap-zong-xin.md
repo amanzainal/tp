@@ -14,7 +14,11 @@ Given below are my contributions to the project.
 
 * **Updated Feature**: Increase the number of ways to modify information in edit.
     * What it does: Allows the user to modify (specifically timeslots and grades) by adding, editing, or deleting current information.
-    * Justification: This feature enhanced flexibility, time efficiency, customization options, and comprehensive editing capabilities.
+    * Justification: This feature enhances flexibility, time efficiency, customization options, and comprehensive editing capabilities.
+
+* **Updated Feature**: Restructured the process of edit. 
+    * What it does: Allows the user to view the current information first and make changes on that information itself.
+    * Justification: This feature enhances user experience by reducing the steps required to edit information, leading to increased efficiency and accuracy.
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=yap-zong-xin&tabRepo=AY2324S2-CS2103-F08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
