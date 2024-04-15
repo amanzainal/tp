@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103-F08-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -161,12 +161,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ####  Implementation
 Grades
-* are an attribute of every student
+* are an optional attribute of every student
 * can vary from student to student, both in quantity of grades stored and test scores
 * of the form: [test name: grade] where
-  + test name is non empty
+  + test name is non-empty
   + the grade is a value from 0 to 100, representing the percentage gotten in the test rounded to the nearest whole number
-* are an optional parameter
 
 Grades can be added and edited with the add and edit command with the prefix `g/` and `!g` respectively.
 
@@ -176,17 +175,17 @@ Given below are example usages scenario of how adding grades behaves.
 with the first test name being `ca1` and the score attained `100` and the second test name being `ca2` and the score attained `50`
 * The user executes `add n/David …` command without any g/ prefixes, adding a new student with no grades, which is permissible.
 
+
 ###  Timeslot parameter
 
 ####  Implementation
 Timeslots
-* are an attribute of every student
+* are an optional attribute of every student
 * of the form: [DayOfWeek StartTime-EndTime] where
     + The DayOfWeek is any day from Monday to Sunday.
     + StartTime and EndTime include hours and optional minutes in 12-hour format
     + Minutes, if included, should be separated from hours by a colon
     + For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'
-* are an optional parameter
 
 Timeslots can be added and edited with the add and edit command with the prefix `t/` and `!t` respectively.
 
@@ -250,6 +249,26 @@ The following sequence diagram shows how an undo operation goes through the `Log
 **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
+
+####  Rationale
+
+A tutor would most likely only need to filter by timeslots to check if there are any clashes in timeslots in students, or if he wants an update on 
+how many classes he has on a particular day. Filtering by other parameters would hardly be used, as instead a tutor would more likely use a `find` command.
+
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Filter only by timeslot
+    * Pros: Easy to implement. 
+    * Cons: May not be robust enough for users who want to filter by other parameters
+
+* **Alternative 2:** Filter by more parameters
+    * Pros: Will be more robust. 
+    * Cons: More work is required to implement. 
+
+* **Alternative 3 (for future updates):** Smart filtering that can filter for timings between startTime and endTime
+    * Pros: Will be more robust and could be convenient for a user to know if he would be teaching at a particular time.
+    * Cons: More work is required to implement.
 
 ### Improved Edit Functionality
 
@@ -391,26 +410,28 @@ _{more aspects and alternatives to be added}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app and provides tutors a
-streamlined approach to communicate with and track information about their students.
+streamlined approach to track information about their students.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                      | I want to …​                           | So that I can…​                                                   |
-|----------|----------------------------------------------|----------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | tutor                                        | add a student's contact                |                                                                   |
-| `* * *`  | tutor                                        | delete a student's contact             | remove entries of students that I no longer need to keep track of |
-| `* * *`  | tutor                                        | edit a student's contact               | correct mistakes I made when adding a contact                     |
-| `* * *`  | tutor                                        | search for a student's contact         | I can find a student's contact                                    |
-| `* * *`  | tutor with many students in the address book | view all students' contact             |                                                                   |
-| `* * `   | new tutor                                    | see usage instructions                 | refer to instructions when I forget how to use the App            |
-| `* * `   | new tutor                                    | try out the programme with sample data | I can explore the functionalities of the product                  |
-| `* * `   | administrative tutor                         | attach timeslots to students           | I can quickly see which class the student belongs to              |
-| `* * `   | insightful tutor                             | attach grades to students              | I can keep track of how my student is doing                       |
-| `* * `   | forgetful tutor                              | filter through timeslots               | I can search for timeslots in which I have lessons                |
-| `* * `   | organised tutor                              | sort through student's grades          | I can get an overview of any particular struggling student        |
+| Priority  | As a …​                                      | I want to …​                              | So that I can…​                                                                    |
+|-----------|----------------------------------------------|-------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *`   | tutor                                        | add a student's contact                   |                                                                                    |
+| `* * *`   | tutor                                        | delete a student's contact                | remove entries of students that I no longer need to keep track of                  |
+| `* * *`   | clumsy tutor                                 | edit a student's contact                  | correct mistakes I made when adding a contact                                      |
+| `* * *`   | tutor                                        | search for a student's contact            | find a student's contact                                                           |
+| `* * *`   | tutor with many students in the address book | view all students' contact                |                                                                                    |
+| `* * `    | tutor with many students in the address book | find for specific students based on name  | quickly get information regarding a particular student                             |
+| `* * `    | time-constrained tutor                       | edit one parameter at a time              | not waste time entering every parameter of the student again                       |
+| `* * `    | new tutor                                    | see usage instructions                    | refer to instructions when I forget how to use the App                             |
+| `* * `    | new tutor                                    | try out the programme with sample data    | explore the functionalities of the product                                         |
+| `* * `    | administrative tutor                         | attach timeslots to students              | quickly note and see which class timing the student belongs to                     |
+| `* * `    | insightful tutor                             | attach grades to students                 | note and keep track of how my student is doing                                     |
+| `* * `    | forgetful tutor                              | filter through timeslots                  | search and thus keep of track of timeslots where I would need to teach             |
+| `* * `    | organised tutor                              | sort through student's grades             | get an overview of any particular struggling student that I would need to focus on |
 
 
 *{More to be added}*
@@ -427,12 +448,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions:**
-
-* 2a. The list is empty.
-  * 2a1. System shows an error message.
-
-    Use case ends.
 
 **Use case:** UC02 - Add a student.<br>
 
@@ -448,24 +463,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. System shows an error message.
 
       Use case ends.
-* 2b. The given phone number is invalid.
+
+* 2b. The given name is invalid.
     * 2b1. System shows an error message.
 
       Use case ends.
-* 2c. The given email is invalid.
+* 2c. The given phone number is invalid.
     * 2c1. System shows an error message.
 
       Use case ends.
-* 2d. The given grades are invalid.
+* 2d. The given email is invalid.
     * 2d1. System shows an error message.
 
       Use case ends.
-* 2e. The given timeslots are invalid.
+* 2e. The given address is invalid.
     * 2e1. System shows an error message.
 
       Use case ends.
-* 2f. The student exists in the database already.
+* 2f. The given grades are invalid.
     * 2f1. System shows an error message.
+
+      Use case ends.
+* 2g. The given timeslots are invalid.
+    * 2g1. System shows an error message.
+
+      Use case ends.
+* 2h. The student exists in the database already.
+    * 2h1. System shows an error message.
 
       Use case ends.
 
@@ -483,10 +507,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 2a. The list is empty.
-    * 2a1. System shows an error message.
-
-      Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
 
@@ -536,10 +556,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 2a. The list is empty.
-    * 2a1. System shows an error message.
-
-      Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
 
@@ -557,11 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 2a. The list is empty.
-    * 2a1. System shows an error message.
-
-      Use case ends.
-* 3a. The given keyword is invalid.
+* 3a. The given index is invalid.
     * 3a1. System shows an error message.
     * 3a2. System requests for the correct index.
     * 3a3. User enters new index.
@@ -569,10 +581,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3a2-3a3 are repeated until the data entered are correct.
 
       Use case resumes from step 4.
-* 3b. The given keyword is not found.
-    * 3a1. System shows an error message.
 
-      Use case ends.
+
+**Use case:** UC06 - Filter a student.<br>
+
+**MSS:**
+1. User requests to list students.
+2. System displays the list of students.
+3. User requests to filter for a specific timeslot.
+4. System show all students with that timeslot information.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -593,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Student/Tutee**: A person that is taught by the tutor
 * **Contact List**: A collection of student's personal and contact information accessible by the tutor.
 * **Grade**: A pair of test name and scores from quizzes, tests, assignments, and other forms of assessment for a student.
-* **Timeslot**: A day and time, recurring weekly, that indicates class times of a student.
+* **Timeslot**: A day and time, recurring weekly, that indicates class timings of a student.
 
 --------------------------------------------------------------------------------------------------------------------
 
