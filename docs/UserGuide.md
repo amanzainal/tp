@@ -197,8 +197,8 @@ If /r is specified, the students will be sorted in ascending order (lowest grade
 The TEST_NAME is case-sensitive.
 Examples:
 
-sort Math sorts the students by their grades in Math in ascending order.
-sort English /r sorts the students by their grades in English in descending order.
+sort CA1 sorts the students by their grades in CA1 in ascending order.
+sort CA2 /r sorts the students by their grades in CA2 in descending order.
 
 ### Deleting a student : `delete`
 
@@ -278,6 +278,6 @@ Furthermore, certain edits can cause TutorTrack to behave in unexpected ways (e.
 | **Edit**   | `edit INDEX !n or !p or !e or !a or !t or !g` <br> e.g.,`edit 2 !n`                                                                                                                            |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
 | **Filter** | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter Saturday Sunday`                                                                                                                            |
-| **Sort**   | `sort TEST_NAME [/r]` <br> e.g., `sort Math`, `sort English /r`                                                                                                                                |
+| **Sort**   | `sort TEST_NAME [/r]` <br> e.g., `sort CA1`, `sort CA2 /r`                                                                                                                                |
 | **List**   | `list`                                                                                                                                                                                         |
 | **Help**   | `help`                                                                                                                                                                                         |
