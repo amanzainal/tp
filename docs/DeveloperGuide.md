@@ -252,19 +252,19 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 ####  Rationale
 
-A tutor would most likely only need to filter by timeslots to check if there are any clashes in timeslots in students, or if he wants an update on 
+A tutor would most likely only need to filter by timeslots to check if there are any clashes in timeslots in students, or if he wants an update on
 how many classes he has on a particular day. Filtering by other parameters would hardly be used, as instead a tutor would more likely use a `find` command.
 
 
 #### Design considerations:
 
 * **Alternative 1 (current choice):** Filter only by timeslot
-    * Pros: Easy to implement. 
+    * Pros: Easy to implement.
     * Cons: May not be robust enough for users who want to filter by other parameters
 
 * **Alternative 2:** Filter by more parameters
-    * Pros: Will be more robust. 
-    * Cons: More work is required to implement. 
+    * Pros: Will be more robust.
+    * Cons: More work is required to implement.
 
 * **Alternative 3 (for future updates):** Smart filtering that can filter for timings between startTime and endTime
     * Pros: Will be more robust and could be convenient for a user to know if he would be teaching at a particular time.
@@ -275,7 +275,7 @@ how many classes he has on a particular day. Filtering by other parameters would
 
 #### Implementation
 
-The edit feature allows the user to modify information about the students. 
+The edit feature allows the user to modify information about the students.
 It is facilitated by `EditCommand`, which extends `Command` and uses `get` and `set` methods to retrieve and update information respectively.
 
 Given below are example usage scenarios of how the edit behaves:
@@ -658,6 +658,23 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a Student
+
+1. Adding a Student's contact information
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`<br>
+       Expected: John Doe is added to the contact list, with the above information listed in the correct places.
+
+   1. Test case: `add n/James Coo p/92765432 e/james@example.com a/123, Bishan Street 11, #02-25`<br>
+      Expected: James Coo is added to the contact list, with the above information listed in the correct places. Timeslots and grades are optional parameters
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`<br>
+       Expected: No Student is added as a Student with name `John Doe` is already in the address book. <br>
+       Error details shown in the status message informing user that student is already
+       stored in address book.
+
+    1. Other incorrect add commands to try: `add`, `add n/ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`, `...` (where x is larger than the list size)<br>
+       Expected: Error message related to what was wrong.
 
 ### Deleting a Student
 
@@ -666,13 +683,69 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all Students using the `list` command. Multiple Students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No Student is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No Student is deleted. Error details shown in the status message informing that index is invalid.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+
+### Editing a Student
+
+1. Editing a Student while all Students are being shown
+
+    1. Prerequisites: List all Students using the `list` command. Multiple Students in the list.
+
+    1. Test case (part 1): `edit 1 !n`<br>
+       Expected: First contact's name is shown in the command box to be edited and also displayed in status message.
+       Test case (part 2): `edit 1 name: Updated Name`<br>
+       Expected: First contact's name is edited. Details of the edited contact shown in the status message
+
+    1. Test case (part 1): `edit 1 !t`<br>
+      Expected: First contact's timeslot is shown in the command box to be edited and also displayed in status message.
+      Test case (part 2): `edit 1 timeslot: Monday 7pm-9pm, Wednesday 3pm-5pm, Friday 2pm-4pm`<br>
+      Expected: First contact's timeslot is edited. Details of the edited contact shown in the status message
+
+    1. Test case: `edit 1`<br>
+       Expected: No student is edited. Error details shown in the status message informing that a parameter to edit needs to be specified.
+
+   1. Test case: `edit 0 !n`<br>
+      Expected: No student is edited. Error details shown in the status message informing that index is invalid.
+
+   1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Filtering for Students
+
+1. Filtering for Students
+
+    1. Test case: `filter sat`<br>
+       Expected: All students with Saturday in their timeslots are displayed in the list.
+
+   1. Test case: `filter saturday`<br>
+      Expected: All students with Saturday in their timeslots are displayed in the list.
+
+   1. Test case: `filter saturday sunday`<br>
+      Expected: All students with Saturday or Sunday in their timeslots are displayed in the list.
+
+   1. Test case: `filter`<br>
+      Expected: Error message noting that a keyword to filter for is needed.
+
+### Sorting through Students
+
+1. Sorting through Students
+
+    1. Test case: `sort ca1`<br>
+       Expected: All students with ca1 in their grades are displayed in the list and sorted in a non-descending manner.
+
+   1. Test case: `sort ca1 /r`<br>
+      Expected: All students with ca1 in their grades are displayed in the list and sorted in a non-ascending manner.
+
+    1. Test case: `sort`<br>
+       Expected: Error message noting that a testName to sort by is needed.
+
 
 
 ### Saving data
@@ -683,3 +756,24 @@ testers are expected to do more *exploratory* testing.
    2. Launch TutorTrack.
    3. Addressbook.json should be repopulated with sample data again.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**:
+
+### Difficulty Level:
+
+The project’s difficulty level was moderate.
+
+### Challenges Faced:
+
+The challenge we were most perturbed by was our small team size of 3. We could not implement many robust features without spending much more effort on the project.
+
+Therefore, we opted to go for smaller features that still can prove helpful to our target audience.
+
+### Effort Required:
+
+The project required much effort into ensuring that all features would fit the project and work as intended. Much testing was done to ensure this.
+
+### Achievements:
+
+Our achievements include implementing important features that we feel would improve the life of a tutor.
