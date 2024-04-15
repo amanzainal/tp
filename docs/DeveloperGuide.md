@@ -204,8 +204,8 @@ The sort feature allows the user to sort students based on the grades of a speci
 
 Given below are example usage scenarios of how the sort behaves:
 
-1. The user executes `sort Math` command to sort the students by their Math test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their Math grades and then uses this comparator to sort the list of students in the `Model`.
-2. The user executes `sort English /r` command to sort the students by their English test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
+1. The user executes `sort CA1` command to sort the students by their CA1 test grades, where the highest graded student will be shown first (i.e. descending order). The `SortCommand` will create a comparator that compares students based on their CA1 grades and then uses this comparator to sort the list of students in the `Model`.
+EOY test grades in ascending order. The `SortCommand` recognizes the `/r` flag which indicates that the sorting should be done in reverse order. It then creates a reversed comparator and sorts the students accordingly.
 
 Here's a simplified class diagram of the sort feature:
 
@@ -765,7 +765,7 @@ testers are expected to do more *exploratory* testing.
 1. **Allow more robust regex matching for names:** Currently, the names of a student can only contain alphanumeric characters and spaces. This limitation rejects names containing terms like “S/O” (Son of), which are commonly used in contexts such as in Singapore. To address this, we plan to implement more robust regex matching rules that will accept a wider variety of characters.
 
 2. **Ensure timeslot’s start time is earlier than end time:** In the current implementation, there are no checks to ensure that a timeslot's start time is earlier than its end time. This oversight can lead to the entry of illogical timeslots, such as a start time of 5 PM and an end time of 3 PM
-<!-- end  -->
+<!-- @@author  -->
 
 3. **Standardize `TEST_NAME` parameter to alphanumeric only for `grade` and `sort` commands:** Currently, the `TEST_NAME` parameter in the `grade` creation and `sort` command can include any character set. This flexibility might lead to inconsistencies and potential errors, especially when sorting or managing grades across different inputs. We plan to restrict the `TEST_NAME` parameter to alphanumeric characters only. This change will standardize input formats, reducing errors and simplifying the process of grade management and sorting operations.
 
