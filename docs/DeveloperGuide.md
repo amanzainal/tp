@@ -252,19 +252,19 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 ####  Rationale
 
-A tutor would most likely only need to filter by timeslots to check if there are any clashes in timeslots in students, or if he wants an update on 
+A tutor would most likely only need to filter by timeslots to check if there are any clashes in timeslots in students, or if he wants an update on
 how many classes he has on a particular day. Filtering by other parameters would hardly be used, as instead a tutor would more likely use a `find` command.
 
 
 #### Design considerations:
 
 * **Alternative 1 (current choice):** Filter only by timeslot
-    * Pros: Easy to implement. 
+    * Pros: Easy to implement.
     * Cons: May not be robust enough for users who want to filter by other parameters
 
 * **Alternative 2:** Filter by more parameters
-    * Pros: Will be more robust. 
-    * Cons: More work is required to implement. 
+    * Pros: Will be more robust.
+    * Cons: More work is required to implement.
 
 * **Alternative 3 (for future updates):** Smart filtering that can filter for timings between startTime and endTime
     * Pros: Will be more robust and could be convenient for a user to know if he would be teaching at a particular time.
@@ -275,7 +275,7 @@ how many classes he has on a particular day. Filtering by other parameters would
 
 #### Implementation
 
-The edit feature allows the user to modify information about the students. 
+The edit feature allows the user to modify information about the students.
 It is facilitated by `EditCommand`, which extends `Command` and uses `get` and `set` methods to retrieve and update information respectively.
 
 Given below are example usage scenarios of how the edit behaves:
@@ -663,15 +663,15 @@ testers are expected to do more *exploratory* testing.
 1. Adding a Student's contact information
 
     1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`<br>
-       Expected: John Doe is added to the contact list, with the above information listed in the correct places. 
+       Expected: John Doe is added to the contact list, with the above information listed in the correct places.
 
    1. Test case: `add n/James Coo p/92765432 e/james@example.com a/123, Bishan Street 11, #02-25`<br>
       Expected: James Coo is added to the contact list, with the above information listed in the correct places. Timeslots and grades are optional parameters
 
     1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`<br>
        Expected: No Student is added as a Student with name `John Doe` is already in the address book. <br>
-       Error details shown in the status message informing user that student is already 
-       stored in address book. 
+       Error details shown in the status message informing user that student is already
+       stored in address book.
 
     1. Other incorrect add commands to try: `add`, `add n/ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`, `...` (where x is larger than the list size)<br>
        Expected: Error message related to what was wrong.
@@ -683,7 +683,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all Students using the `list` command. Multiple Students in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No Student is deleted. Error details shown in the status message informing that index is invalid.
@@ -758,7 +758,7 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Effort**: 
+## **Appendix: Effort**:
 
 ### Difficulty Level:
 
@@ -772,7 +772,7 @@ Therefore, we opted to go for smaller features that still can prove helpful to o
 
 ### Effort Required:
 
-The project required much effort into ensuring that all features would fit the project and work as intended. Much testing was done to ensure this. 
+The project required much effort into ensuring that all features would fit the project and work as intended. Much testing was done to ensure this.
 
 ### Achievements:
 

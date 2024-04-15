@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to modify (specifically timeslots and grades) by adding, editing, or deleting current information.
     * Justification: This feature enhances flexibility, time efficiency, customization options, and comprehensive editing capabilities.
 
-* **Updated Feature**: Restructured the process of edit. 
+* **Updated Feature**: Restructured the process of edit.
     * What it does: Allows the user to view the current information first and make changes on that information itself.
     * Justification: This feature enhances user experience by reducing the steps required to edit information, leading to increased efficiency and accuracy.
 
