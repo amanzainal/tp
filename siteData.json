@@ -64,10 +64,19 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
+        "adding-a-student": "Adding a Student",
         "deleting-a-student": "Deleting a Student",
+        "editing-a-student": "Editing a Student",
+        "filtering-for-students": "Filtering for Students",
+        "sorting-through-students": "Sorting through Students",
         "saving-data": "Saving data",
         "appendix-planned-enhancements": "Appendix: Planned Enhancements",
-        "planned-enhancements": "Planned Enhancements"
+        "planned-enhancements": "Planned Enhancements",
+        "appendix-effort": "Appendix: Effort:",
+        "difficulty-level": "Difficulty Level:",
+        "challenges-faced": "Challenges Faced:",
+        "effort-required": "Effort Required:",
+        "achievements": "Achievements:"
       },
       "headingKeywords": {}
     },
