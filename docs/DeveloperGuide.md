@@ -565,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list students.
 2. System displays the list of students.
 3. User requests to delete a specific student information.
-4System delete the student information from the database.
+4. System delete the student information from the database.
 
    Use case ends.
 
@@ -673,7 +673,7 @@ testers are expected to do more *exploratory* testing.
        Error details shown in the status message informing user that student is already
        stored in address book.
 
-    1. Other incorrect add commands to try: `add`, `add n/ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect add commands to try: `add`, `add n/ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/Saturday 4pm-6pm g/ca1: 50`, `...` <br>
        Expected: Error message related to what was wrong.
 
 ### Deleting a Student
