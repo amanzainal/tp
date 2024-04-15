@@ -683,3 +683,17 @@ testers are expected to do more *exploratory* testing.
    2. Launch TutorTrack.
    3. Addressbook.json should be repopulated with sample data again.
 
+## Appendix: Planned Enhancements
+
+**Team size: 3**
+
+### Planned Enhancements
+<!-- @@author: joelgoh1 -->
+1. **Allow more robust regex matching for names:** Currently, the names of a student can only contain alphanumeric characters and spaces. This limitation rejects names containing terms like “S/O” (Son of), which are commonly used in contexts such as in Singapore. To address this, we plan to implement more robust regex matching rules that will accept a wider variety of characters. This change will allow the application to accommodate culturally specific naming conventions, enhancing its usability in diverse environments.
+
+2. **Ensure timeslot’s start time is earlier than end time:** In the current implementation, there are no checks to ensure that a timeslot's start time is earlier than its end time. This oversight can lead to the entry of illogical timeslots, such as a start time of 5 PM and an end time of
+<!-- end  -->
+
+3. **Standardize `TEST_NAME` parameter to alphanumeric only for `grade` and `sort` commands:** Currently, the `TEST_NAME` parameter in the `grade` creation and `sort` command can include any character set. This flexibility might lead to inconsistencies and potential errors, especially when sorting or managing grades across different inputs. We plan to restrict the `TEST_NAME` parameter to alphanumeric characters only. This change will standardize input formats, reducing errors and simplifying the process of grade management and sorting operations.
+
+4. **Limit the address field to 140 characters:** Currently, the address field accepts very long inputs, but the UI truncates these at about 140 characters, which can lead to inconsistency and a loss of information. To ensure better consistency and visibility of address data in the UI, we plan to limit user input for the address field to 140 characters. This limitation will prevent overflow and ensure that the entire address is visible in the UI without truncation, thereby improving the user interface and experience.
