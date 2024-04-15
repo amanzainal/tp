@@ -20,14 +20,14 @@ Given below are my contributions to the project.
     * What it does: allows the user to filter through their students by timeslot
     * Justification: This feature improves the product because a user can quickly filter through the timings that they would need to teach a student, providing much needed convenience for the tutor
 
-  
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=joelgoh1&tabRepo=AY2324S2-CS2103-F08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
     * Managed releases `v1.3` - `v1.3.1` (2 releases) on GitHub
     * Created milestone `v1.1` - `v1.3b` (4 milestone) on Github
-    * Created and assigned many Github Issues 
+    * Created and assigned many Github Issues
 
 
 * **Documentation**:
