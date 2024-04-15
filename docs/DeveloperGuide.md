@@ -270,24 +270,39 @@ how many classes he has on a particular day. Filtering by other parameters would
     * Pros: Will be more robust and could be convenient for a user to know if he would be teaching at a particular time.
     * Cons: More work is required to implement.
 
-### Improved Edit Functionality
+
+### Improvised Edit Feature
 
 #### Implementation
-The proposed enhancement aims to improve the current edit functionality within our system.
-Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user.
-This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing.
-Therefore, the proposed implementation focuses on changing the edit behavior to only modify one parameter at a time while retaining the previous values for other parameters.
 
-How the feature is implemented (or is going to be implemented).
-* Single-Parameter Editing: The enhanced edit command will allow users to edit one parameter at a time. For example, instead of wiping out all grade values and replacing them with a new set of grades, the user can now edit individual grades or classes separately.
-* Retain Previous Values: When a user initiates an edit operation, the system will display the current value of the parameter being edited. This value will be shown in the text area, allowing users to modify it based on the existing data. This approach aligns with the assumption that edits typically involve minor adjustments or updates rather than complete replacements.
+The edit feature allows the user to modify information about the students. 
+It is facilitated by `EditCommand`, which extends `Command` and uses `get` and `set` methods to retrieve and update information respectively.
 
-Why it is implemented this way?
-The enhancement aims to improve user experience by enabling incremental edits and preserving previous values, facilitating more accurate and efficient changes. This approach also enhances data integrity and accuracy, aligning with best practices in user interface design to minimize errors and data loss during edits.
+Given below are example usage scenarios of how the edit behaves:
 
-Alternatives considered.
-* Alternative 1 was batch editing, allowing users to modify multiple parameters simultaneously. However, this could lead to confusion and data conflicts, especially with complex data. It might also need extra validation for data consistency.
-* Alternative 2 involved a confirmation prompt before editing, informing users of potential data replacement. While transparent, it doesn't solve the issue of preserving data during edits.
+1. `edit 1 !p` will display `edit 1 phone: {PHONE_NUMBER}`, prompting user to make changes to the current phone number of the 1st student.
+2. `edit 2 !g` will display `edit 2 grade: {GRADE}`, prompting user to modify (add/edit/delete) current grades of the 2nd student.
+
+Here's a simplified sequence diagram of the edit feature:
+
+<puml src="diagrams/EditSequenceDiagram.puml" alt="EditSequenceDiagram" />
+
+#### Design Considerations
+
+**Aspect: Edit student's information**
+
+* **Alternative 1 (current choice):** Display the current information user wants to edit and use only a single edit command to modify any information about the student (including timeslots and grades).
+    * Pros: Users only need to use one edit command, making the process straightforward and intuitive. It also allows modification of any information without accidentally overwriting pre-existing data since current values are displayed in the Command Box, ensuring data integrity.
+    * Cons: Users may find it challenging to edit specific types of information within the single edit command when there are many data fields.
+
+* **Alternative 2:** Add extra method such as AddGrade or AddTimeslot to solve the issue of overwriting pre-existing information.
+    * Pros: Divides functionality into separate methods, potentially making the codebase more organized and easier to manage.
+    * Cons: Users may need to learn multiple methods for different types of edits, potentially leading to a steeper learning curve compared to a single edit command approach.
+
+#### Usage
+
+* Before making changes, the system display the current information related to the selected data. This allows users to review what's already there and decide what modifications are needed.
+* Users can make modifications (add/edit/delete) to timeslots and grades without overwriting the current values.
 
 ### \[Proposed\] Undo/redo feature
 

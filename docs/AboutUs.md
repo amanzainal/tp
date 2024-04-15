@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/yap-zong-xin.png" width="200px">
 
-[[github](http://github.com/yap-zong-xin)]
+[[github](http://github.com/yap-zong-xin)] [[portfolio](team/yap-zong-xin.md)]
 
 * Role: Developer
 * Responsibilities: Add features
