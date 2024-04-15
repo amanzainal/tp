@@ -565,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list students.
 2. System displays the list of students.
 3. User requests to delete a specific student information.
-4System delete the student information from the database.
+4. System delete the student information from the database.
 
    Use case ends.
 
